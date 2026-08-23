@@ -1,12 +1,16 @@
 import express, { Application } from "express";
 import { Server } from "http";
+import { ILogger } from "./logger/logger.interface.js";
+import { inject, injectable } from "inversify";
+import { TYPES } from "./types.js";
 
+@injectable()
 export class App {
   private _app: Application;
   port: number;
   server!: Server;
 
-  constructor() {
+  constructor(@inject(TYPES.ILogger) private logger: ILogger) {
     this._app = express();
     this.port = Number(process.env.PORT);
   }
@@ -21,7 +25,7 @@ export class App {
 
   private useRoutes(): void {
     this._app.get("/health", (req, res) => {
-      res.status(200).json({ message: "Бэк работает" });
+      res.status(200).json({ message: "Бэк дышит!" });
     });
   }
 
@@ -30,7 +34,7 @@ export class App {
     this.useRoutes();
 
     this.server = this.app.listen(this.port, () => {
-      console.log("Успешный запуск сервера");
+      this.logger.log("Success!");
     });
   }
 }
