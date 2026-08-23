@@ -1,0 +1,18 @@
+{
+  "name": "loandepot",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "workspaces": [
+    "loandepot-app/packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "dev:web": "npm run dev -w @loandepot/web",
+    "dev:api": "npm run dev -w @loandepot/api"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.11"
+  }
+}

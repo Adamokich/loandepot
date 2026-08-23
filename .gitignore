@@ -1,0 +1,8 @@
+node_modules
+dist/
+.env
+.env.*
+daily_tasks.md
+
+# Editor directories and files
+.vscode/*
