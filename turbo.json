@@ -11,6 +11,9 @@
     },
     "lint": {
       "outputs": []
+    },
+    "db:seed": {
+      "cache": false
     }
   }
 }
