@@ -3,69 +3,72 @@ import { IModule } from "@loandepot/types";
 export const mockModules: IModule[] = [
   {
     moduleId: 1,
-    name: "Ebook Marketing 1",
-    imgUrl: "https://ethnomir.ru/upload/medialibrary/9d8/biblioteka_1.jpg",
-    tags: ["some tag 1", "some tag 2"],
-    descr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia!",
+    moduleName: "Ebook",
+    moduleImgUrl: "https://ir.ozone.ru/s3/multimedia-u/c1000/6276633066.jpg",
+    tags: ["branding", "marketing", "personal"],
+    moduleDescr:
+      "The digital age has introduced a massive shift in reading habits, primarily driven by the widespread adoption of e-books. An e-book, or electronic book, is a digital version of a traditional print book that can be read on various devices, including smartphones, tablets, laptops, and dedicated e-readers like the Amazon Kindle.",
     fileUrl:
       "https://www.learningcontainer.com/download/sample-pdf-file-for-testing/?wpdmdl=1566&refresh=6a8dd42f491731787679791",
-    ebookName: "Ebook Name 1",
-    ebookDescr: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    ebookImgUrl:
-      "https://upload-c6586a534fa292290726b16ffe6ea493.storage.yandexcloud.net/iblock/efb/efb38754f588ede43662bf307e5cbd6a/980dbb4409c680d5078682bb18a5e14f.jpg",
+    name: "Marketing ebook",
+    descr:
+      "One of the biggest advantages of e-books is their portability. Instead of carrying heavy physical volumes, readers can store an entire library of thousands of books inside a single, lightweight device.",
+    imgUrl:
+      "https://habrastorage.org/getpro/habr/upload_files/c36/60c/4f1/c3660c4f196b3b555a0fad23b75ef549.png",
     videoUrl: "https://youtube.com/embed/uyAMGPoE1dU",
     lockVideoUrl: "https://youtube.com/embed/8wBd4FljHH0",
   },
   {
     moduleId: 2,
-    name: "Ebook Marketing 2",
-    imgUrl:
-      "https://png.pngtree.com/png-vector/20250101/ourlarge/pngtree-a-laptop-with-decorative-cover-on-stack-of-books-beside-pencil-png-image_15008107.png",
-    tags: ["some tag 1", "some tag 2", "some tag 3", "some tag 4"],
-    descr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia! Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia!",
+    moduleName: "Book",
+    moduleImgUrl:
+      "https://buklya.com/media/article/WxvgP06jBTrmVPoNiWSrBuHp0aOFIKZEvX0PDfQJ.jpg",
+    tags: ["marketing", "branding"],
+    moduleDescr:
+      "Writing a great book is only half the battle; the real challenge lies in getting it into the hands of readers. This is where book marketing becomes essential. In today's crowded publishing landscape, authors and publishers must navigate a complex digital ecosystem to build visibility and drive sales for their titles.",
     fileUrl:
       "https://www.learningcontainer.com/download/sample-pdf-file-for-testing/?wpdmdl=1566&refresh=6a8dd42f491731787679791",
-    ebookName: "Ebook Name 2",
-    ebookDescr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-    ebookImgUrl:
-      "https://img.magnific.com/free-photo/coffee-mug-laptop-with-stationeries-wooden-desk-library_23-2147956643.jpg?semt=ais_test_b&w=740&q=80",
+    name: "Marketing book",
+    descr:
+      "Ultimately, book marketing is not a one-time event but a continuous process.",
+    imgUrl:
+      "https://img02.rl0.ru/afisha/720x-/daily.afisha.ru/uploads/images/4/a1/4a1ec98cc89e4f99ac9aa4aa67dcdbd6.jpg",
     videoUrl: "https://youtube.com/embed/uyAMGPoE1dU",
     lockVideoUrl: "https://youtube.com/embed/8wBd4FljHH0",
   },
   {
     moduleId: 3,
-    name: "Ebook Marketing 3",
-    imgUrl:
-      "https://img.magnific.com/free-photo/top-view-light-pink-rose-open-book-gray-surface_141793-18269.jpg?semt=ais_hybrid&w=740&q=80",
-    tags: ["some tag 1"],
-    descr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia! Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia! Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia!",
+    moduleName: "Computer marketing",
+    moduleImgUrl:
+      "https://img.magnific.com/free-photo/business-man-work_23-2148499500.jpg",
+    tags: ["devices", "marketing", "computers"],
+    moduleDescr:
+      "The global computer market is incredibly fast-paced, forcing technology brands to constantly innovate their computer marketing strategies. Unlike standard consumer goods, marketing laptops, desktops, and computing components requires a delicate balance between showcasing raw technical power and addressing real-world user needs.",
     fileUrl:
       "https://www.learningcontainer.com/download/sample-pdf-file-for-testing/?wpdmdl=1566&refresh=6a8dd42f491731787679791",
-    ebookName: "Ebook Name 3",
-    ebookDescr: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    ebookImgUrl:
-      "https://png.pngtree.com/png-vector/20230803/ourlarge/pngtree-open-book-cartoon-clipart-an-open-book-with-lands-full-of-vector-png-image_6868555.png",
+    name: "Computer",
+    descr:
+      "To stand out, hardware manufacturers no longer just sell specifications like RAM or processor speeds. Instead, they market the ultimate user experience.",
+    imgUrl:
+      "https://foni.papik.pro/uploads/posts/2024-09/foni-papik-pro-aswt-p-kartinki-komp-na-prozrachnom-fone-16.png",
     videoUrl: "https://youtube.com/embed/uyAMGPoE1dU",
     lockVideoUrl: "https://youtube.com/embed/8wBd4FljHH0",
   },
   {
     moduleId: 4,
-    name: "Ebook Marketing 4",
-    imgUrl:
-      "https://plus.unsplash.com/premium_photo-1683120731413-b3aa991cb64e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFuJTIwcmVhZGluZyUyMGJvb2t8ZW58MHx8MHx8fDA%3D",
-    tags: ["some tag 1", "some tag 2", "some tag 3"],
-    descr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur in accusantium ipsa provident quasi dolorem porro beatae magnam laudantium quia!",
+    moduleName: "Laptop marketing",
+    moduleImgUrl:
+      "https://img.magnific.com/free-photo/horizontal-shot-handsome-young-male-freelancer-with-thick-beard-sitting-armchair-with-generic-laptop-computer-working-remotely-from-home-people-gadgets-technology-communication-concept_343059-792.jpg",
+    tags: ["devices", "laptop", "marketing"],
+    moduleDescr:
+      "The laptop market is highly saturated, making strategic laptop marketing essential for brands looking to capture consumer attention. While desktop marketing often emphasizes raw, upgradable power, laptop campaigns must focus on a different set of priorities: portability, battery efficiency, and lifestyle integration.",
     fileUrl:
       "https://www.learningcontainer.com/download/sample-pdf-file-for-testing/?wpdmdl=1566&refresh=6a8dd42f491731787679791",
-    ebookName: "Ebook Name 1",
-    ebookDescr:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-    ebookImgUrl: "https://qwintry.com/ru/file/7076",
+    name: "Laptop",
+    descr:
+      "In recent years, laptop marketing has shifted from listing technical specifications to telling a story of freedom and productivity.",
+    imgUrl:
+      "https://cdn1.technopark.ru/technopark/photos_resized/faq_top_image/1710_1112/1007/1_1007.jpg",
     videoUrl: "https://youtube.com/embed/uyAMGPoE1dU",
     lockVideoUrl: "https://youtube.com/embed/8wBd4FljHH0",
   },

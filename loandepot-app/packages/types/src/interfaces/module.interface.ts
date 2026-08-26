@@ -1,14 +1,14 @@
 export interface IModule {
   _id?: string;
   moduleId: number;
-  name: string;
-  imgUrl: string;
+  moduleName: string;
+  moduleImgUrl: string;
   tags: string | string[];
-  descr: string;
+  moduleDescr: string;
   fileUrl: string;
-  ebookName: string;
-  ebookDescr: string;
-  ebookImgUrl: string;
+  name: string;
+  descr: string;
+  imgUrl: string;
   videoUrl: string;
   lockVideoUrl: string;
 }

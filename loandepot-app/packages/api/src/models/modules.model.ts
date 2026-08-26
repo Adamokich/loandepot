@@ -8,12 +8,12 @@ const moduleShema = new Schema<IModule>(
       required: true,
       unique: true,
     },
-    name: {
+    moduleName: {
       type: String,
       required: true,
       trim: true,
     },
-    imgUrl: {
+    moduleImgUrl: {
       type: String,
       required: true,
     },
@@ -21,7 +21,7 @@ const moduleShema = new Schema<IModule>(
       type: [String],
       required: true,
     },
-    descr: {
+    moduleDescr: {
       type: String,
       required: true,
     },
@@ -29,15 +29,15 @@ const moduleShema = new Schema<IModule>(
       type: String,
       required: true,
     },
-    ebookName: {
+    name: {
       type: String,
       required: true,
     },
-    ebookDescr: {
+    descr: {
       type: String,
       required: true,
     },
-    ebookImgUrl: {
+    imgUrl: {
       type: String,
       required: true,
     },
@@ -51,7 +51,7 @@ const moduleShema = new Schema<IModule>(
     },
   },
   {
-    timestamps: true,
+    timestamps: false,
     versionKey: false,
   },
 );
