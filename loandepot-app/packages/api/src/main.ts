@@ -6,9 +6,9 @@ import {
   ContainerModule,
   ContainerModuleLoadOptions,
 } from "inversify";
-import { ILogger } from "./logger/logger.interface.js";
+import { ILogger } from "./modules/logger/logger.interface.js";
 import { TYPES } from "./types.js";
-import { LoggerService } from "./logger/logger.service.js";
+import { LoggerService } from "./modules/logger/logger.service.js";
 
 dotenv.config();
 

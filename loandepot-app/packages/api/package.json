@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/main.ts"
+    "dev": "tsx watch src/main.ts",
+    "db:seed": "tsx src/database/seed.ts"
   },
   "dependencies": {
     "@loandepot/types": "^1.0.0",

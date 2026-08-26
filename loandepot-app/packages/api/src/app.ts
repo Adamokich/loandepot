@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import { Server } from "http";
-import { ILogger } from "./logger/logger.interface.js";
+import { ILogger } from "./modules/logger/logger.interface.js";
 import { inject, injectable } from "inversify";
 import { TYPES } from "./types.js";
 
