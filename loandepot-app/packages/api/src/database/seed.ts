@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { ModuleModel } from "../models/modules.model.js";
 import { mockModules } from "./seeds/module.seed.js";
+import { ReviewModel } from "../models/reviews.model.js";
+import { mockReviews } from "./seeds/review.seed.js";
 
 dotenv.config();
 
@@ -17,8 +19,10 @@ async function runSeed() {
     await mongoose.connect(MONGO_URI);
 
     await ModuleModel.deleteMany({});
+    await ReviewModel.deleteMany({});
 
     await ModuleModel.insertMany(mockModules);
+    await ReviewModel.insertMany(mockReviews);
   } catch (error) {
     console.error(`Произошла ошибка, подробнее: ${error}`);
   } finally {
