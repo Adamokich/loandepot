@@ -3,6 +3,7 @@ import { Server } from "http";
 import { ILogger } from "./modules/logger/logger.interface.js";
 import { inject, injectable } from "inversify";
 import { TYPES } from "./types.js";
+import { ModuleController } from "./modules/module/module.controller.js";
 
 @injectable()
 export class App {
@@ -10,7 +11,10 @@ export class App {
   port: number;
   server!: Server;
 
-  constructor(@inject(TYPES.ILogger) private logger: ILogger) {
+  constructor(
+    @inject(TYPES.Logger) private logger: ILogger,
+    @inject(TYPES.ModuleController) private moduleController: ModuleController,
+  ) {
     this._app = express();
     this.port = Number(process.env.PORT);
   }
@@ -24,9 +28,7 @@ export class App {
   }
 
   private useRoutes(): void {
-    this._app.get("/health", (req, res) => {
-      res.status(200).json({ message: "Бэк дышит!" });
-    });
+    this._app.use("/api", this.moduleController.router);
   }
 
   public async init(): Promise<void> {
