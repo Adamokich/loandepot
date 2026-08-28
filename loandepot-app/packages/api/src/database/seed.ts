@@ -1,13 +1,28 @@
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { ModuleModel } from "../models/modules.model.js";
 import { mockModules } from "./seeds/module.seed.js";
 import { ReviewModel } from "../models/reviews.model.js";
 import { mockReviews } from "./seeds/review.seed.js";
-
+import { connectDB } from "../config/db.js";
 dotenv.config();
 
+interface ISeedItem {
+  model: Model<any>;
+  data: unknown[];
+}
+
 const MONGO_URI = process.env.MONGO_URI;
+const models: ISeedItem[] = [
+  {
+    model: ModuleModel,
+    data: mockModules,
+  },
+  {
+    model: ReviewModel,
+    data: mockReviews,
+  },
+];
 
 async function runSeed() {
   if (!MONGO_URI) {
@@ -16,13 +31,12 @@ async function runSeed() {
   }
 
   try {
-    await mongoose.connect(MONGO_URI);
+    await connectDB();
 
-    await ModuleModel.deleteMany({});
-    await ReviewModel.deleteMany({});
-
-    await ModuleModel.insertMany(mockModules);
-    await ReviewModel.insertMany(mockReviews);
+    for (const item of models) {
+      await item.model.deleteMany({});
+      await item.model.insertMany(item.data);
+    }
   } catch (error) {
     console.error(`Произошла ошибка, подробнее: ${error}`);
   } finally {
