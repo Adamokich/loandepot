@@ -14,6 +14,11 @@ import { ModuleRepository } from "./modules/module/module.repository.js";
 import { IModuleService } from "./modules/module/module.service.interface.js";
 import { ModuleService } from "./modules/module/module.service.js";
 import { ModuleController } from "./modules/module/module.controller.js";
+import { IUserRepository } from "./modules/user/user.repository.interface.js";
+import { UserRepository } from "./modules/user/user.repository.js";
+import { IUserService } from "./modules/user/user.service.interface.js";
+import { UserService } from "./modules/user/user.service.js";
+import { UserController } from "./modules/user/user.controller.js";
 
 dotenv.config();
 
@@ -30,6 +35,18 @@ const appBindings = new ContainerModule(
     options
       .bind<ModuleController>(TYPES.ModuleController)
       .to(ModuleController)
+      .inSingletonScope();
+    options
+      .bind<IUserRepository>(TYPES.UserRepository)
+      .to(UserRepository)
+      .inSingletonScope();
+    options
+      .bind<IUserService>(TYPES.UserService)
+      .to(UserService)
+      .inSingletonScope();
+    options
+      .bind<UserController>(TYPES.UserController)
+      .to(UserController)
       .inSingletonScope();
     options.bind<ILogger>(TYPES.Logger).to(LoggerService).inSingletonScope();
     options.bind<App>(TYPES.Application).to(App);

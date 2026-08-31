@@ -25,6 +25,10 @@ export abstract class BaseController {
     return this.send(res, 200, data);
   }
 
+  public created<T>(res: Response, data: T): Response {
+    return this.send(res, 201, data);
+  }
+
   public error<T>(res: Response, code: number, message: T): Response {
     return this.send(res, code, {
       statusCode: code,
@@ -35,8 +39,9 @@ export abstract class BaseController {
   protected bindRoutes(routes: IControllerRoute[]) {
     for (const route of routes) {
       this.logger.log(`${route.method} ${route.path}`);
+      const middlewares = route.middlewares || [];
       const handler = route.func.bind(this);
-      this._router[route.method](route.path, handler);
+      this._router[route.method](route.path, ...middlewares, handler);
     }
   }
 }

@@ -4,4 +4,7 @@ export const TYPES = {
   ModuleRepository: Symbol.for("ModuleRepository"),
   ModuleService: Symbol.for("ModuleService"),
   ModuleController: Symbol.for("ModuleController"),
+  UserRepository: Symbol.for("UserRepository"),
+  UserService: Symbol.for("UserService"),
+  UserController: Symbol.for("UserController"),
 };
