@@ -1,10 +1,11 @@
-import express, { Application } from "express";
+import express, { Application, Router } from "express";
 import { Server } from "http";
 import { ILogger } from "./modules/logger/logger.interface.js";
 import { inject, injectable } from "inversify";
 import { TYPES } from "./types.js";
 import { ModuleController } from "./modules/module/module.controller.js";
 import { UserController } from "./modules/user/user.controller.js";
+import { ReviewController } from "./modules/review/review.controller.js";
 
 @injectable()
 export class App {
@@ -16,6 +17,7 @@ export class App {
     @inject(TYPES.Logger) private logger: ILogger,
     @inject(TYPES.ModuleController) private moduleController: ModuleController,
     @inject(TYPES.UserController) private userController: UserController,
+    @inject(TYPES.ReviewController) private reviewController: ReviewController,
   ) {
     this._app = express();
     this.port = Number(process.env.PORT);
@@ -30,8 +32,15 @@ export class App {
   }
 
   private useRoutes(): void {
-    this._app.use("/api", this.moduleController.router);
-    this._app.use("/users", this.userController.router);
+    const apiRouter = Router();
+    const userRouter = Router();
+
+    apiRouter.use(this.moduleController.router);
+    apiRouter.use(this.reviewController.router);
+    userRouter.use(this.userController.router);
+
+    this._app.use("/api", apiRouter);
+    this._app.use("/users", userRouter);
   }
 
   public async init(): Promise<void> {

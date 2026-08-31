@@ -7,4 +7,7 @@ export const TYPES = {
   UserRepository: Symbol.for("UserRepository"),
   UserService: Symbol.for("UserService"),
   UserController: Symbol.for("UserController"),
+  ReviewRepository: Symbol.for("ReviewRepository"),
+  ReviewService: Symbol.for("ReviewService"),
+  ReviewController: Symbol.for("ReviewController"),
 };
