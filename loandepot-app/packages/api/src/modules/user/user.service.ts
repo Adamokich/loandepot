@@ -4,7 +4,6 @@ import { TYPES } from "../../types.js";
 import { IUserRepository } from "./user.repository.interface.js";
 import { IUser } from "@loandepot/types";
 import { IUserRegisterDto } from "./dto/user.register.dto.js";
-import { UserModel } from "../../models/user.model.js";
 
 @injectable()
 export class UserService implements IUserService {

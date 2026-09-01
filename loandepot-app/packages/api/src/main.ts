@@ -24,6 +24,11 @@ import { ReviewService } from "./modules/review/review.service.js";
 import { ReviewController } from "./modules/review/review.controller.js";
 import { ReviewRepository } from "./modules/review/review.repository.js";
 import { IReviewRepository } from "./modules/review/review.repository.interface.js";
+import { IAppointmentRepository } from "./modules/appointment/appointment.repository.interface.js";
+import { AppointmentRepository } from "./modules/appointment/appointment.repository.js";
+import { AppointmentController } from "./modules/appointment/appointment.conroller.js";
+import { IAppointmentService } from "./modules/appointment/appointment.service.interface.js";
+import { AppointmentService } from "./modules/appointment/appointment.service.js";
 
 dotenv.config();
 
@@ -61,6 +66,18 @@ const appBindings = new ContainerModule(
     options
       .bind<ReviewController>(TYPES.ReviewController)
       .to(ReviewController)
+      .inSingletonScope();
+    options
+      .bind<IAppointmentRepository>(TYPES.AppointmentRepository)
+      .to(AppointmentRepository)
+      .inSingletonScope();
+    options
+      .bind<IAppointmentService>(TYPES.AppointmentService)
+      .to(AppointmentService)
+      .inSingletonScope();
+    options
+      .bind<AppointmentController>(TYPES.AppointmentController)
+      .to(AppointmentController)
       .inSingletonScope();
     options.bind<ILogger>(TYPES.Logger).to(LoggerService).inSingletonScope();
     options.bind<App>(TYPES.Application).to(App);

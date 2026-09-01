@@ -5,7 +5,7 @@ import { ILogger } from "../logger/logger.interface.js";
 import { IUserService } from "./user.service.interface.js";
 import { Request, Response, NextFunction, json } from "express";
 import { IUserRegisterDto, userRegisterDto } from "./dto/user.register.dto.js";
-import { userMiddleware } from "../../common/middlewares/user.middleware.js";
+import { validateMiddleware } from "../../common/middlewares/validate.middleware.js";
 
 @injectable()
 export class UserController extends BaseController {
@@ -19,7 +19,7 @@ export class UserController extends BaseController {
         path: "/register",
         func: this.register,
         method: "post",
-        middlewares: [userMiddleware(userRegisterDto)],
+        middlewares: [validateMiddleware(userRegisterDto)],
       },
     ]);
   }
