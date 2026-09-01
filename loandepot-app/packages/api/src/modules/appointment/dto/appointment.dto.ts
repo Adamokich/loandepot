@@ -13,7 +13,7 @@ export const appointmentDto = z.object({
   date: z
     .string()
     .pipe(z.coerce.date({ error: "Неправильно указан формат даты" }))
-    .refine((date) => date > new Date(), {
+    .refine((date) => date.getTime() > Date.now(), {
       error: "Ошибка. Встречу нельзя назначить на прошедший день",
     }),
 });
