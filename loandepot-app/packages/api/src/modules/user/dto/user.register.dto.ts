@@ -12,7 +12,7 @@ export const userRegisterDto = z.object({
     .string()
     .trim()
     .toLowerCase()
-    .pipe(z.email({ error: "Неправильно указан формат мэйла" })),
+    .pipe(z.email({ error: "Неправильно указан формат email" })),
   phone: z
     .string()
     .regex(phoneReg, { error: "Неверный формат телефона" })

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodError, ZodType } from "zod";
 
-export const userMiddleware = (schema: ZodType) => {
+export const validateMiddleware = (schema: ZodType) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       req.body = await schema.parseAsync(req.body);
@@ -18,9 +18,9 @@ export const userMiddleware = (schema: ZodType) => {
           errorMessage: "Ошибка при валидации данных",
           details: formatErrors,
         });
-      }
 
-      next(error);
+        return;
+      }
     }
   };
 };

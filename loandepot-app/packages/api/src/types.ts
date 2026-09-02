@@ -10,4 +10,7 @@ export const TYPES = {
   ReviewRepository: Symbol.for("ReviewRepository"),
   ReviewService: Symbol.for("ReviewService"),
   ReviewController: Symbol.for("ReviewController"),
+  AppointmentRepository: Symbol.for("AppointmentRepository"),
+  AppointmentService: Symbol.for("AppointmentService"),
+  AppointmentController: Symbol.for("AppointmentController"),
 };

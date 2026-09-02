@@ -6,6 +6,7 @@ import { TYPES } from "./types.js";
 import { ModuleController } from "./modules/module/module.controller.js";
 import { UserController } from "./modules/user/user.controller.js";
 import { ReviewController } from "./modules/review/review.controller.js";
+import { AppointmentController } from "./modules/appointment/appointment.conroller.js";
 
 @injectable()
 export class App {
@@ -18,6 +19,8 @@ export class App {
     @inject(TYPES.ModuleController) private moduleController: ModuleController,
     @inject(TYPES.UserController) private userController: UserController,
     @inject(TYPES.ReviewController) private reviewController: ReviewController,
+    @inject(TYPES.AppointmentController)
+    private appointmentController: AppointmentController,
   ) {
     this._app = express();
     this.port = Number(process.env.PORT);
@@ -32,15 +35,21 @@ export class App {
   }
 
   private useRoutes(): void {
-    const apiRouter = Router();
-    const userRouter = Router();
+    const routes = {
+      "/api": [this.moduleController, this.reviewController],
+      "/users": [this.userController],
+      "/appointments": [this.appointmentController],
+    };
 
-    apiRouter.use(this.moduleController.router);
-    apiRouter.use(this.reviewController.router);
-    userRouter.use(this.userController.router);
+    for (const [endpoint, controllers] of Object.entries(routes)) {
+      const router = Router();
 
-    this._app.use("/api", apiRouter);
-    this._app.use("/users", userRouter);
+      for (const contoller of controllers) {
+        router.use(contoller.router);
+      }
+
+      this._app.use(endpoint, router);
+    }
   }
 
   public async init(): Promise<void> {
