@@ -1,0 +1,16 @@
+@import url('https://googleapis.com');
+@import url('./fonts.css');
+@import url('./variables.css');
+@import url('./reset.css');
+
+body {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--font-roboto);
+  color: var(--color-dark);
+}
+
+h2 {
+  font-size: 58px;
+  font-family: var(--font-mark);
+}
