@@ -10,6 +10,9 @@ import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 </template>
 
 <style scoped>
+.home {
+  font-family: var(--font-mark);
+}
 .play {
   margin-left: 30px;
 }
