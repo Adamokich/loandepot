@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import Test1Comp from '@/modules/Test1Comp.vue';
-import Test2Comp from '@/modules/Test2Comp.vue';
-import Test3Comp from '@/modules/Test3Comp.vue';
-import SectionSlider from '@/shared/components/slider/SectionSlider.vue';
+import { HeroSection } from '@/modules/hero-modules';
+import { SectionSlider } from '@/shared';
 
-const sections = ['first', 'second', 'third'];
+const sections = ['Show Up: Evolve'];
 </script>
 
 <template>
   <div class="home-page">
     <SectionSlider :sections="sections">
-      <Test1Comp />
-      <Test2Comp />
-      <Test3Comp />
+      <HeroSection />
     </SectionSlider>
   </div>
 </template>
