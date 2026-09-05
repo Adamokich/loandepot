@@ -14,3 +14,8 @@ h2 {
   font-size: 58px;
   font-family: var(--font-mark);
 }
+
+.container {
+  width: 100%;
+  max-width: 1290px;
+}

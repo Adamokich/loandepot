@@ -71,17 +71,14 @@ onUnmounted(() => {
 
 <style scoped>
 .section-slider {
-  width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 86px 1fr;
 }
 
 .section-slider-panel {
-  width: 100%;
-  max-width: 86px;
   display: flex;
   flex-shrink: 0;
   z-index: 10;
@@ -102,7 +99,8 @@ onUnmounted(() => {
 
 .section-slide-name,
 .section-slide-number {
-  transform: rotate(270deg);
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
   font-size: 13px;
 }
 
