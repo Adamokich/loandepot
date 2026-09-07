@@ -17,5 +17,6 @@ h2 {
 
 .container {
   width: 100%;
-  max-width: 1290px;
+  max-width: 1400px;
+  padding-left: 64px;
 }

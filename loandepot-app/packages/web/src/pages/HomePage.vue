@@ -2,7 +2,7 @@
 import { HeroSection } from '@/modules/hero-modules';
 import { SectionSlider } from '@/shared';
 
-const sections = ['Show Up: Evolve'];
+const sections = ['Show Up: Evolve', 'some'];
 </script>
 
 <template>

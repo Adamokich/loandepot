@@ -2,6 +2,8 @@
 import { BaseButton, ScheduleButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import { ref } from 'vue';
+import HeroSectionModules from './HeroSectionModules.vue';
+import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 
 const isPlaying = ref<boolean>(false);
 </script>
@@ -16,7 +18,7 @@ const isPlaying = ref<boolean>(false);
       <div class="hero-main">
         <div class="hero-left">
           <div class="hero-info">
-            <h2 class="hero-title">Show Up: <span>Evolve</span></h2>
+            <h1 class="hero-title">Show Up: <span>Evolve</span></h1>
             <p class="hero-descr">A retail LO’s guide to combating digital disruption</p>
           </div>
           <BaseButton class="hero-button">Get free access</BaseButton>
@@ -31,15 +33,24 @@ const isPlaying = ref<boolean>(false);
               <span>why</span>
             </div>
           </div>
+          <div class="hero-modules-view-all">
+            <span>Explore all modules</span>
+            <RouterLink class="hero-modules-view-all-link" to="#">
+              <PlusIcon />
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>
+    <HeroSectionModules />
   </div>
 </template>
 
 <style scoped>
 .hero-section {
+  position: relative;
   width: 100%;
+  overflow: hidden;
 }
 .hero-wrapper {
   display: flex;
@@ -63,8 +74,9 @@ const isPlaying = ref<boolean>(false);
 }
 
 .hero-main {
+  position: relative;
   display: flex;
-  gap: 20px;
+  gap: 90px;
   justify-content: space-between;
 }
 
@@ -95,12 +107,13 @@ const isPlaying = ref<boolean>(false);
 
 .hero-video {
   width: 100%;
-  height: 100vh;
   max-width: 758px;
   position: relative;
 
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -132,5 +145,36 @@ const isPlaying = ref<boolean>(false);
   svg {
     margin-left: 4px;
   }
+}
+
+.hero-modules-view-all {
+  position: absolute;
+  height: 307px;
+  right: 190px;
+  bottom: -1px;
+  background-color: var(--color-light);
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  writing-mode: vertical-rl;
+  padding: 32px 30px;
+  transform: rotate(180deg);
+
+  span {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+.hero-modules-view-all-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

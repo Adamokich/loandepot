@@ -2,6 +2,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import LogoIcon from '../icons/LogoIcon.vue';
 import ArrowDownIcon from '../icons/ArrowDownIcon.vue';
+import { formatNumber } from '@/shared/utils/formatters.ts';
 
 const { sections } = defineProps<{ sections: string[] }>();
 const currentSlide = ref<number>(0);
@@ -15,7 +16,6 @@ const totalSlides = computed<number>(() => {
   return sections.length;
 });
 
-const formatNumber = (num: number) => (num < 10 ? `0${num}` : num);
 const checkDevice = () => (isMobile.value = innerWidth < 1024);
 
 function nextSlide(): void {
@@ -85,7 +85,7 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: space-between;
   padding: 37px 25px 10px 25px;
-  height: 100vh;
+  height: 734px;
   border-right: 1px solid rgb(0 0 0 / 0.2);
 }
 
@@ -132,7 +132,6 @@ onUnmounted(() => {
 }
 
 .section-slide-viewport {
-  padding-left: 65px;
   height: 100vh;
   overflow: hidden;
   flex-grow: 1;
