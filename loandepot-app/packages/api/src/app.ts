@@ -1,4 +1,10 @@
-import express, { Application, Router } from "express";
+import express, {
+  Application,
+  NextFunction,
+  Router,
+  Request,
+  Response,
+} from "express";
 import { Server } from "http";
 import { ILogger } from "./modules/logger/logger.interface.js";
 import { inject, injectable } from "inversify";
@@ -32,6 +38,13 @@ export class App {
 
   private useMiddleware(): void {
     this._app.use(express.json());
+
+    this._app.use((req: Request, res: Response, next: NextFunction) => {
+      res.setHeader("Access-Control-Allow-Origin", `${process.env.ACCESS_URL}`);
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+
+      next();
+    });
   }
 
   private useRoutes(): void {

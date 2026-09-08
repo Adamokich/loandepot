@@ -10,7 +10,14 @@ body {
   color: var(--color-dark);
 }
 
+h1,
 h2 {
   font-size: 58px;
   font-family: var(--font-mark);
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding-left: 64px;
 }
