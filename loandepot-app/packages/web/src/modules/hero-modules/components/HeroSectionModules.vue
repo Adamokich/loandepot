@@ -56,6 +56,8 @@ onMounted(async () => {
           @slide-change="onSlideChange"
           :slides-per-view="'auto'"
           :space-between="24"
+          :speed="900"
+          :simulate-touch="false"
           :loop="true"
         >
           <SwiperSlide v-for="module in modulesStore.modules" :key="module.moduleId">
@@ -129,6 +131,11 @@ onMounted(async () => {
   width: 43px;
   height: 43px;
   cursor: pointer;
+  transition: all 0.4s ease;
+
+  &:active {
+    transform: scale(0.8);
+  }
 }
 
 .action-left {

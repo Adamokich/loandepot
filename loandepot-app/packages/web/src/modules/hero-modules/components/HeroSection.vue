@@ -125,6 +125,8 @@ const isPlaying = ref<boolean>(false);
   top: 122px;
   left: 50%;
   transform: translateX(-50%);
+  transition: transform 0.4s ease;
+  cursor: pointer;
 
   span {
     color: var(--color-light);

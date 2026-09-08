@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ArrowRightIcon from '@/shared/components/icons/ArrowRightIcon.vue';
 import { formatNumber } from '@/shared/utils';
+import { computed } from 'vue';
 
 const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   moduleId: number;
@@ -18,12 +19,15 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
       background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 97.999%), url(${moduleImgUrl}) center center / cover no-repeat`,
     }"
   >
-    <div v-show="!isActive" class="slide-inactive">
+    <div class="slide-inactive" :style="{ opacity: !isActive ? '1' : '0' }">
       <span class="slide-number">{{ formatNumber(moduleId) }}</span>
       <h4 class="slide-title">{{ moduleName }}</h4>
     </div>
 
-    <div v-show="isActive" class="slide-active">
+    <div
+      class="slide-active"
+      :style="{ opacity: isActive ? '1' : '0', pointerEvents: isActive ? 'auto' : 'none' }"
+    >
       <div class="slide-active-header">
         <span>{{ formatNumber(moduleId) }}</span>
         <RouterLink to="#">
@@ -47,6 +51,7 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
 
 .slide-inactive,
 .slide-active {
+  transition: opacity 0.4s ease;
   color: var(--color-light);
   font-size: 13px;
   font-weight: 900;
