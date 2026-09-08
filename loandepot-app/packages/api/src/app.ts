@@ -40,7 +40,7 @@ export class App {
     this._app.use(express.json());
 
     this._app.use((req: Request, res: Response, next: NextFunction) => {
-      res.setHeader("Access-Control-Allow-Origin", `${process.env.ACCESS_URL}`);
+      res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
       res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
 
       next();

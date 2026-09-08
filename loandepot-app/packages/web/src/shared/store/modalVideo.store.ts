@@ -12,7 +12,6 @@ export const useModalVideoStore = defineStore('modalVideo', () => {
   }
 
   function closeVideoModal(): void {
-    console.log('close');
     isOpen.value = false;
     videoUrl.value = '';
   }
