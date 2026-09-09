@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ArrowRightIcon from '@/shared/components/icons/ArrowRightIcon.vue';
 import { formatNumber } from '@/shared/utils';
-import { computed } from 'vue';
 
 const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   moduleId: number;
@@ -55,6 +54,10 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   color: var(--color-light);
   font-size: 13px;
   font-weight: 900;
+
+  span {
+    opacity: 0.5;
+  }
 }
 
 .slide-inactive {
@@ -80,10 +83,6 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  span {
-    opacity: 0.5;
-  }
 
   svg {
     cursor: pointer;

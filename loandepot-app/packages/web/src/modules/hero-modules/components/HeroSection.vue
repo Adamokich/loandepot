@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { BaseButton, ScheduleButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
-import { ref } from 'vue';
 import HeroSectionModules from './HeroSectionModules.vue';
 import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
+import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 
-const isPlaying = ref<boolean>(false);
+const modalVideostore = useModalVideoStore();
 </script>
 
 <template>
@@ -24,9 +24,12 @@ const isPlaying = ref<boolean>(false);
           <BaseButton class="hero-button">Get free access</BaseButton>
         </div>
         <div class="hero-video">
-          <div v-if="!isPlaying" class="hero-preview" @click="isPlaying = true">
+          <div class="hero-preview">
             <img src="../../../app/assets/img/ShowUpBg_2.jpg" alt="ShowUp present" />
-            <div class="hero-preview-controller">
+            <div
+              @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
+              class="hero-preview-controller"
+            >
               <div class="hero-preview-controller-play">
                 <PlayIcon :width="14" :height="16" />
               </div>
@@ -178,5 +181,6 @@ const isPlaying = ref<boolean>(false);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 4px 4px var(--color-shadow-success);
 }
 </style>

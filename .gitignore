@@ -2,6 +2,7 @@ node_modules
 dist/
 .env
 .env.*
+!.env.example
 daily_tasks.md
 
 # Editor directories and files
