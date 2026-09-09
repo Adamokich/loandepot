@@ -26,11 +26,11 @@ const modalVideostore = useModalVideoStore();
         <div class="hero-video">
           <div class="hero-preview">
             <img src="../../../app/assets/img/ShowUpBg_2.jpg" alt="ShowUp present" />
-            <div class="hero-preview-controller">
-              <div
-                @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
-                class="hero-preview-controller-play"
-              >
+            <div
+              @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
+              class="hero-preview-controller"
+            >
+              <div class="hero-preview-controller-play">
                 <PlayIcon :width="14" :height="16" />
               </div>
               <span>why</span>
