@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ArrowRightIcon from '@/shared/components/icons/ArrowRightIcon.vue';
+import { isMobileKey } from '@/shared/constants/injectionKeys';
 import { formatNumber } from '@/shared/utils';
+import { computed, inject, type CSSProperties, type Ref } from 'vue';
 
 const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   moduleId: number;
@@ -9,24 +11,40 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   moduleImgUrl: string;
   isActive: boolean;
 }>();
+
+const isMobile = inject(isMobileKey);
+const backgroundImg = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 97.999%), url(${moduleImgUrl}) center center / cover no-repeat`;
+
+const inactiveSlideClass = computed<CSSProperties>(() => {
+  if (!isMobile?.value) {
+    return { opacity: !isActive ? '1' : '0' };
+  }
+
+  return {};
+});
+
+const activeSlideClass = computed<CSSProperties>(() => {
+  if (!isMobile?.value) {
+    return { opacity: isActive ? '1' : '0', pointerEvents: isActive ? 'auto' : 'none' };
+  }
+
+  return {};
+});
 </script>
 
 <template>
   <div
     class="hero-section-slide"
     :style="{
-      background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 97.999%), url(${moduleImgUrl}) center center / cover no-repeat`,
+      background: backgroundImg,
     }"
   >
-    <div class="slide-inactive" :style="{ opacity: !isActive ? '1' : '0' }">
+    <div v-if="!isMobile" class="slide-inactive" :style="inactiveSlideClass">
       <span class="slide-number">{{ formatNumber(moduleId) }}</span>
       <h4 class="slide-title">{{ moduleName }}</h4>
     </div>
 
-    <div
-      class="slide-active"
-      :style="{ opacity: isActive ? '1' : '0', pointerEvents: isActive ? 'auto' : 'none' }"
-    >
+    <div class="slide-active" :style="activeSlideClass">
       <div class="slide-active-header">
         <span>{{ formatNumber(moduleId) }}</span>
         <RouterLink to="#">
@@ -109,5 +127,25 @@ const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   -webkit-line-clamp: 4;
   line-clamp: 4;
   opacity: 0.5;
+}
+
+@media (max-width: 1200px) {
+  .hero-section-slide {
+    height: 153px;
+  }
+
+  .slide-descr {
+    display: none;
+  }
+
+  .slide-active {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-active {
+    justify-content: space-between;
+  }
 }
 </style>

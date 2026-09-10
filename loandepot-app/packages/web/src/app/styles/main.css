@@ -8,6 +8,15 @@ body {
   font-weight: 400;
   font-family: var(--font-roboto);
   color: var(--color-dark);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-inline: 24px;
+  }
 }
 
 h1,

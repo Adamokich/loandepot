@@ -3,24 +3,21 @@ import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Swiper as SwiperCore } from 'swiper';
 import { useModulesStore } from '../store/modules.store';
-import { computed, onMounted, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 import HeroSectionSlide from './HeroSectionSlide.vue';
 import 'swiper/css';
+import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const modulesStore = useModulesStore();
 const swiperInstance = ref<SwiperCore | undefined>(undefined);
-const activeIndex = ref<number>(0);
-
-const activeModuleId = computed<number | null>(() => {
-  return modulesStore.modules ? modulesStore.modules[activeIndex.value].moduleId : null;
-});
+const isMobile = inject(isMobileKey);
 
 function onSwiperInit(swiper: SwiperCore): void {
   swiperInstance.value = swiper;
 }
 
 function onSlideChange(swiper: SwiperCore): void {
-  activeIndex.value = swiper.realIndex;
+  modulesStore.activeIndex = swiper.realIndex;
 }
 
 function nextSlide(): void {
@@ -37,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="hero-modules">
+  <div :class="!isMobile ? 'hero-modules' : 'hero-modules container'">
     <div class="hero-modules-wrapper">
       <div class="hero-modules-left">
         <h3 class="hero-modules-title">Explore 8 Educational Modules To Evolve Your Career</h3>
@@ -67,7 +64,7 @@ onMounted(async () => {
               :module-name="module.moduleName"
               :module-img-url="module.moduleImgUrl"
               :descr="module.descr"
-              :is-active="activeModuleId === module.moduleId"
+              :is-active="modulesStore.activeModuleId === module.moduleId"
             />
           </SwiperSlide>
         </Swiper>
@@ -97,7 +94,7 @@ onMounted(async () => {
   padding-block: 40px;
   background-color: var(--color-accent);
   gap: 43px;
-  margin-top: -307px;
+  margin-top: -306px;
 }
 
 .hero-modules-left {
@@ -155,5 +152,68 @@ onMounted(async () => {
 
 .swiper-slide {
   width: 307px;
+}
+
+@media (max-width: 1440px) {
+  .hero-modules-left {
+    position: relative;
+  }
+
+  .hero-modules-wrapper {
+    justify-content: space-between;
+  }
+
+  .hero-modules-slider {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 1320px) {
+  .hero-modules {
+    max-width: 900px;
+  }
+
+  .hero-modules-left {
+    gap: 20px;
+  }
+
+  .hero-modules-title {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-modules {
+    position: static;
+    max-width: 100%;
+    margin-top: 47px;
+    height: 421px;
+  }
+
+  .hero-modules-wrapper {
+    position: static;
+    padding-left: 0;
+    flex-direction: column;
+    margin-top: 0;
+    gap: 23px;
+  }
+
+  .hero-modules-title {
+    max-width: 100%;
+  }
+
+  .hero-modules-slider {
+    max-width: 750px;
+  }
+
+  .hero-modules-actions {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-modules {
+    padding-left: 20px;
+  }
 }
 </style>
