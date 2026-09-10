@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-import LogoIcon from '../icons/LogoIcon.vue';
-import ArrowDownIcon from '../icons/ArrowDownIcon.vue';
+import { computed, inject, provide, ref } from 'vue';
 import { formatNumber } from '@/shared/utils/formatters.ts';
+import LogoIcon from '@/shared/components/icons/LogoIcon.vue';
+import ArrowDownIcon from '@/shared/components/icons/ArrowDownIcon.vue';
+import { isMobileKey } from '@/shared/constants/injectionKeys';
 
 const { sections } = defineProps<{ sections: string[] }>();
 const currentSlide = ref<number>(0);
-const isMobile = ref<boolean>(false);
+const isMobile = inject(isMobileKey);
 
 const currentSectionName = computed<string>(() => {
   return sections[currentSlide.value];
@@ -16,28 +17,17 @@ const totalSlides = computed<number>(() => {
   return sections.length;
 });
 
-const checkDevice = () => (isMobile.value = innerWidth < 1024);
-
 function nextSlide(): void {
-  if (!isMobile.value && currentSlide.value < totalSlides.value - 1) {
+  if (!isMobile && currentSlide.value < totalSlides.value - 1) {
     currentSlide.value++;
   }
 }
 
 function goToFirstSlide(): void {
-  if (!isMobile.value) {
+  if (!isMobile?.value) {
     currentSlide.value = 0;
   }
 }
-
-onMounted(() => {
-  checkDevice();
-  window.addEventListener('resize', checkDevice);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', checkDevice);
-});
 </script>
 
 <template>
