@@ -2,11 +2,11 @@
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Swiper as SwiperCore } from 'swiper';
-import { useModulesStore } from '../store/modules.store';
 import { inject, onMounted, ref } from 'vue';
 import HeroSectionSlide from './HeroSectionSlide.vue';
 import 'swiper/css';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
+import { useModulesStore } from '@/shared/index.ts';
 
 const modulesStore = useModulesStore();
 const swiperInstance = ref<SwiperCore | undefined>(undefined);

@@ -1,6 +1,12 @@
 export { default as VideoModal } from './components/VideoModal.vue';
 export { default as ScheduleButton } from './components/ScheduleButton.vue';
 export { default as BaseButton } from './components/buttons/BaseButton.vue';
+export { default as PlayVideoButton } from './components/buttons/PlayVideoButton.vue';
 export { default as HeaderMobile } from './components/HeaderMobile.vue';
 export { default as HeaderDesktop } from './components/HeaderDesktop.vue';
 export { default as VideoButton } from './components/buttons/VideoButton.vue';
+export { default as SectionSlider } from './components/SectionSlider.vue';
+export { default as MoreLink } from './components/MoreLink.vue';
+export { useModulesStore } from './store/modules.store.ts';
+export { useModalVideoStore } from './store/modalVideo.store.ts';
+export { useSwiper } from './composables/swiper.ts';

@@ -6,9 +6,7 @@ const videoModalStore = useModalVideoStore();
 </script>
 
 <template>
-  <AppLayout>
-    <RouterView></RouterView>
-  </AppLayout>
+  <AppLayout />
   <VideoModal
     :video-url="videoModalStore.videoUrl"
     :name="videoModalStore.videoName"

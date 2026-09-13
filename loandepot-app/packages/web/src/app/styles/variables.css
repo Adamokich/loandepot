@@ -1,12 +1,15 @@
 :root {
   --color-accent: #6d53af;
+  --color-accent-bold: #7b6ca1;
   --color-dark: #000000;
   --color-light: #ffffff;
   --color-error: #eb0606;
   --color-success: #9ec73d;
   --color-shadow-success: #a9ca5b;
-  --color-light-opacity: rgba(255, 255, 255, 0.5);
-  --color-border-opacity: #979797;
+  --color-light-opacity: #979797;
+  --color-border-opacity: rgba(151, 151, 151, 0.2);
+  --color-bg-accent: rgba(109, 83, 175, 0.2);
+  --color-border-accent: rgba(109, 83, 175, 0.3);
 
   --font-mark: 'Mark', sans-serif;
   --font-roboto: 'Roboto', sans-serif;

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { BaseButton, HeaderDesktop, VideoButton } from '@/shared';
+import { BaseButton, HeaderDesktop, PlayVideoButton, VideoButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import HeroSectionModules from './HeroSectionModules.vue';
-import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 import { inject } from 'vue';
 import HeaderMobile from '@/shared/components/HeaderMobile.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
+import MoreLink from '@/shared/components/MoreLink.vue';
 
 const modalVideostore = useModalVideoStore();
 const isMobile = inject(isMobileKey);
@@ -35,17 +35,15 @@ const isMobile = inject(isMobileKey);
               @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
               class="hero-preview-controller"
             >
-              <div class="hero-preview-controller-play">
+              <PlayVideoButton class="hero-preview-play-btn">
                 <PlayIcon :width="14" :height="16" />
-              </div>
+              </PlayVideoButton>
               <span>why</span>
             </div>
           </div>
           <div class="hero-modules-view-all">
             <span>Explore all modules</span>
-            <RouterLink class="hero-modules-view-all-link" to="#">
-              <PlusIcon />
-            </RouterLink>
+            <MoreLink url="/modules" />
           </div>
         </div>
       </div>
@@ -128,20 +126,6 @@ const isMobile = inject(isMobileKey);
   }
 }
 
-.hero-preview-controller-play {
-  background-color: var(--color-light);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    margin-left: 4px;
-  }
-}
-
 .hero-modules-view-all {
   position: absolute;
   height: 307px;
@@ -160,18 +144,6 @@ const isMobile = inject(isMobileKey);
     font-size: 13px;
     font-weight: 700;
   }
-}
-
-.hero-modules-view-all-link {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-success);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 4px 4px var(--color-shadow-success);
 }
 
 @media (max-width: 1470px) {

@@ -8,5 +8,11 @@ export const router = createRouter({
       name: 'home',
       component: () => import('@/pages/HomePage.vue'),
     },
+    {
+      path: '/modules',
+      name: 'modules',
+      alias: '/modules:moduleId',
+      component: () => import('@/pages/ModulesPage.vue'),
+    },
   ],
 });

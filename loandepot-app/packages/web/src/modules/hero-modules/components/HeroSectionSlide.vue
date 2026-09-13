@@ -47,7 +47,7 @@ const activeSlideClass = computed<CSSProperties>(() => {
     <div class="slide-active" :style="activeSlideClass">
       <div class="slide-active-header">
         <span>{{ formatNumber(moduleId) }}</span>
-        <RouterLink to="#">
+        <RouterLink :to="{ path: 'modules', state: { moduleId } }">
           <ArrowRightIcon />
         </RouterLink>
       </div>

@@ -5,7 +5,6 @@ import MobileLayout from './MobileLayout.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const isMobile = ref<boolean>(false);
-const sections = ['Show Up: Evolve'];
 const checkDevice = () => (isMobile.value = innerWidth < 1201);
 
 provide(isMobileKey, isMobile);
@@ -19,13 +18,8 @@ onUnmounted(() => window.removeEventListener('resize', checkDevice));
 </script>
 
 <template>
-  <DesktopLayout v-if="!isMobile" :sections="sections">
-    <slot></slot>
-  </DesktopLayout>
-
-  <MobileLayout v-else>
-    <slot></slot>
-  </MobileLayout>
+  <DesktopLayout v-if="!isMobile" />
+  <MobileLayout v-else />
 </template>
 
 <style scoped></style>
