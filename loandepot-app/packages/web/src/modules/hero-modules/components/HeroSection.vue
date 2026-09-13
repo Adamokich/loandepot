@@ -2,7 +2,6 @@
 import { BaseButton, HeaderDesktop, VideoButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import HeroSectionModules from './HeroSectionModules.vue';
-import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 import { inject } from 'vue';
 import HeaderMobile from '@/shared/components/HeaderMobile.vue';
@@ -25,7 +24,10 @@ const isMobile = inject(isMobileKey);
           </div>
           <div class="hero-links">
             <BaseButton class="hero-button">Get free access</BaseButton>
-            <VideoButton v-if="isMobile" />
+            <VideoButton
+              v-if="isMobile"
+              @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
+            />
           </div>
         </div>
         <div class="hero-video">
@@ -40,12 +42,6 @@ const isMobile = inject(isMobileKey);
               </div>
               <span>why</span>
             </div>
-          </div>
-          <div class="hero-modules-view-all">
-            <span>Explore all modules</span>
-            <RouterLink class="hero-modules-view-all-link" to="#">
-              <PlusIcon />
-            </RouterLink>
           </div>
         </div>
       </div>
@@ -142,38 +138,6 @@ const isMobile = inject(isMobileKey);
   }
 }
 
-.hero-modules-view-all {
-  position: absolute;
-  height: 307px;
-  right: 190px;
-  bottom: -1px;
-  background-color: var(--color-light);
-  z-index: 30;
-  display: flex;
-  justify-content: space-between;
-  writing-mode: vertical-rl;
-  padding: 32px 30px;
-  transform: rotate(180deg);
-
-  span {
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 700;
-  }
-}
-
-.hero-modules-view-all-link {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-success);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 4px 4px var(--color-shadow-success);
-}
-
 @media (max-width: 1470px) {
   .hero-title {
     font-size: 40px;
@@ -184,29 +148,6 @@ const isMobile = inject(isMobileKey);
   }
 }
 
-@media (max-width: 1440px) {
-  .hero-modules-view-all {
-    writing-mode: unset;
-    transform: rotate(0deg);
-    height: 70px;
-    padding-block: 10px;
-    width: 100%;
-    max-width: 307px;
-    display: flex;
-    align-items: center;
-    left: 5px;
-    bottom: -35px;
-  }
-
-  .hero-video {
-    position: static;
-  }
-
-  .hero-preview {
-    position: relative;
-  }
-}
-
 @media (max-width: 1320px) {
   .hero-main {
     gap: 25px;
@@ -214,10 +155,6 @@ const isMobile = inject(isMobileKey);
 
   .hero-video {
     max-width: 660px;
-  }
-
-  .hero-modules-view-all {
-    bottom: 14px;
   }
 }
 
@@ -233,12 +170,6 @@ const isMobile = inject(isMobileKey);
     position: static;
   }
 
-  .hero-modules-view-all {
-    color: var(--color-light);
-    background-color: var(--color-dark);
-    left: 64px;
-  }
-
   .hero-preview-controller {
     display: none;
   }
@@ -252,17 +183,9 @@ const isMobile = inject(isMobileKey);
 }
 
 @media (max-width: 480px) {
-  .hero-wrapper {
-    padding-left: 0;
-  }
-
   .hero-links {
     flex-direction: column;
     align-items: start;
-  }
-
-  .hero-modules-view-all {
-    left: 20px;
   }
 }
 </style>

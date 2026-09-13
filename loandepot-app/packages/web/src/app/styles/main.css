@@ -13,12 +13,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (max-width: 480px) {
-  body {
-    padding-inline: 24px;
-  }
-}
-
 h1,
 h2 {
   font-size: 58px;
@@ -29,4 +23,10 @@ h2 {
   width: 100%;
   max-width: 1400px;
   padding-left: 64px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 24px;
+  }
 }
