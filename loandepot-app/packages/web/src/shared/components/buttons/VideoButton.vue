@@ -5,7 +5,7 @@ import PlayIcon from '../icons/PlayIcon.vue';
 <template>
   <button class="video-button">
     <span>Why</span>
-    <PlayIcon :width="8" :height="11" />
+    <PlayIcon :width="14" :height="17" />
   </button>
 </template>
 
@@ -18,5 +18,6 @@ import PlayIcon from '../icons/PlayIcon.vue';
   padding: 20px 50px;
   border: 2px solid rgba(151, 151, 151, 0.5);
   border-radius: var(--border-radius);
+  font-weight: 900;
 }
 </style>

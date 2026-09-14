@@ -130,16 +130,18 @@ const activeSlideClass = computed<CSSProperties>(() => {
 }
 
 @media (max-width: 1200px) {
-  .hero-section-slide {
-    height: 153px;
-  }
-
   .slide-descr {
     display: none;
   }
 
   .slide-active {
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section-slide {
+    height: 153px;
   }
 }
 

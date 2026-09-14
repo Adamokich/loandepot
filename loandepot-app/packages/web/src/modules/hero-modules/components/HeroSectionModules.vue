@@ -5,6 +5,7 @@ import { Swiper as SwiperCore } from 'swiper';
 import { inject, onMounted, ref } from 'vue';
 import HeroSectionSlide from './HeroSectionSlide.vue';
 import 'swiper/css';
+import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 import { useModulesStore } from '@/shared/index.ts';
 
@@ -69,22 +70,30 @@ onMounted(async () => {
           </SwiperSlide>
         </Swiper>
       </div>
+      <div class="hero-modules-view-all">
+        <span>Explore all modules</span>
+        <RouterLink class="hero-modules-view-all-link" to="#">
+          <PlusIcon />
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .hero-modules {
-  height: 100vh;
+  position: absolute;
   background-color: var(--color-accent);
   width: 100%;
-  max-width: 1130px;
+  max-width: 1251px;
+  height: 307px;
+  bottom: 0;
 }
 
 .hero-modules-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1165px;
+  max-width: 1251px;
   display: flex;
   align-items: start;
   justify-content: flex-start;
@@ -94,7 +103,6 @@ onMounted(async () => {
   padding-block: 40px;
   background-color: var(--color-accent);
   gap: 43px;
-  margin-top: -306px;
 }
 
 .hero-modules-left {
@@ -116,6 +124,40 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.hero-modules-view-all {
+  position: absolute;
+  height: 307px;
+  width: 100%;
+  max-width: 86px;
+  top: 0;
+  right: 0;
+  background-color: var(--color-light);
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  writing-mode: vertical-rl;
+  padding: 32px 30px;
+  transform: rotate(180deg);
+
+  span {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+.hero-modules-view-all-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 4px 4px var(--color-shadow-success);
 }
 
 .action-left,
@@ -158,21 +200,9 @@ onMounted(async () => {
   .hero-modules-left {
     position: relative;
   }
-
-  .hero-modules-wrapper {
-    justify-content: space-between;
-  }
-
-  .hero-modules-slider {
-    max-width: 600px;
-  }
 }
 
 @media (max-width: 1320px) {
-  .hero-modules {
-    max-width: 900px;
-  }
-
   .hero-modules-left {
     gap: 20px;
   }
@@ -186,16 +216,24 @@ onMounted(async () => {
   .hero-modules {
     position: static;
     max-width: 100%;
+    height: 100vh;
     margin-top: 47px;
-    height: 421px;
   }
 
   .hero-modules-wrapper {
-    position: static;
     padding-left: 0;
-    flex-direction: column;
-    margin-top: 0;
-    gap: 23px;
+    height: 100%;
+  }
+
+  .hero-modules-view-all {
+    left: 0;
+    top: 250px;
+    border-radius: var(--border-radius);
+    writing-mode: unset;
+    transform: rotate(0deg);
+    max-width: 307px;
+    height: 70px;
+    align-items: center;
   }
 
   .hero-modules-title {
@@ -205,9 +243,22 @@ onMounted(async () => {
   .hero-modules-slider {
     max-width: 750px;
   }
+}
 
+@media (max-width: 767px) {
   .hero-modules-actions {
     display: none;
+  }
+
+  .hero-modules-wrapper {
+    flex-direction: column;
+    gap: 23px;
+  }
+
+  .hero-modules-view-all {
+    top: 360px;
+    background-color: var(--color-dark);
+    color: var(--color-light);
   }
 }
 

@@ -25,7 +25,10 @@ const isMobile = inject(isMobileKey);
           </div>
           <div class="hero-links">
             <BaseButton class="hero-button">Get free access</BaseButton>
-            <VideoButton v-if="isMobile" />
+            <VideoButton
+              v-if="isMobile"
+              @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
+            />
           </div>
         </div>
         <div class="hero-video">
@@ -40,10 +43,6 @@ const isMobile = inject(isMobileKey);
               </PlayVideoButton>
               <span>why</span>
             </div>
-          </div>
-          <div class="hero-modules-view-all">
-            <span>Explore all modules</span>
-            <MoreLink url="/modules" />
           </div>
         </div>
       </div>
@@ -126,23 +125,17 @@ const isMobile = inject(isMobileKey);
   }
 }
 
-.hero-modules-view-all {
-  position: absolute;
-  height: 307px;
-  right: 190px;
-  bottom: -1px;
+.hero-preview-controller-play {
   background-color: var(--color-light);
-  z-index: 30;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   display: flex;
-  justify-content: space-between;
-  writing-mode: vertical-rl;
-  padding: 32px 30px;
-  transform: rotate(180deg);
+  justify-content: center;
+  align-items: center;
 
-  span {
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 700;
+  svg {
+    margin-left: 4px;
   }
 }
 
@@ -156,29 +149,6 @@ const isMobile = inject(isMobileKey);
   }
 }
 
-@media (max-width: 1440px) {
-  .hero-modules-view-all {
-    writing-mode: unset;
-    transform: rotate(0deg);
-    height: 70px;
-    padding-block: 10px;
-    width: 100%;
-    max-width: 307px;
-    display: flex;
-    align-items: center;
-    left: 5px;
-    bottom: -35px;
-  }
-
-  .hero-video {
-    position: static;
-  }
-
-  .hero-preview {
-    position: relative;
-  }
-}
-
 @media (max-width: 1320px) {
   .hero-main {
     gap: 25px;
@@ -186,10 +156,6 @@ const isMobile = inject(isMobileKey);
 
   .hero-video {
     max-width: 660px;
-  }
-
-  .hero-modules-view-all {
-    bottom: 14px;
   }
 }
 
@@ -205,12 +171,6 @@ const isMobile = inject(isMobileKey);
     position: static;
   }
 
-  .hero-modules-view-all {
-    color: var(--color-light);
-    background-color: var(--color-dark);
-    left: 64px;
-  }
-
   .hero-preview-controller {
     display: none;
   }
@@ -224,17 +184,9 @@ const isMobile = inject(isMobileKey);
 }
 
 @media (max-width: 480px) {
-  .hero-wrapper {
-    padding-left: 0;
-  }
-
   .hero-links {
     flex-direction: column;
     align-items: start;
-  }
-
-  .hero-modules-view-all {
-    left: 20px;
   }
 }
 </style>
