@@ -55,13 +55,12 @@ function openFirstVideo(): void {
   max-width: 202px;
   border-radius: var(--border-radius);
   color: var(--color-light);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 @media (hover: hover) {
   .share:hover {
-    opacity: 0.8;
     transform: translateY(-5px);
   }
 
