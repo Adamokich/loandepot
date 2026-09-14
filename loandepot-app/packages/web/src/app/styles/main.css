@@ -8,6 +8,9 @@ body {
   font-weight: 400;
   font-family: var(--font-roboto);
   color: var(--color-dark);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -20,4 +23,10 @@ h2 {
   width: 100%;
   max-width: 1400px;
   padding-left: 64px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 24px;
+  }
 }

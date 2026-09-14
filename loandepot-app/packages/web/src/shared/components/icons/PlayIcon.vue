@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { width, height, color } = defineProps<{ width: number; height: number; color?: string }>();
+const { width, height, color } = defineProps<{ width?: number; height?: number; color?: string }>();
 </script>
 
 <template>

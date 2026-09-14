@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 const { bgColor } = defineProps<{
   bgColor?: string;
 }>();
 </script>
 
 <template>
-  <button class="base-button" :style="{ backgroundColor: bgColor }">
+  <RouterLink to="#" class="base-button" :style="{ backgroundColor: bgColor }">
     <slot></slot>
-  </button>
+  </RouterLink>
 </template>
 
 <style scoped>
