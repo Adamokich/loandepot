@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { BaseButton, HeaderDesktop, VideoButton } from '@/shared';
+import { BaseButton, HeaderDesktop, PlayVideoButton, VideoButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import HeroSectionModules from './HeroSectionModules.vue';
 import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 import { inject } from 'vue';
 import HeaderMobile from '@/shared/components/HeaderMobile.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
+import MoreLink from '@/shared/components/MoreLink.vue';
 
 const modalVideostore = useModalVideoStore();
 const isMobile = inject(isMobileKey);
@@ -37,9 +38,9 @@ const isMobile = inject(isMobileKey);
               @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
               class="hero-preview-controller"
             >
-              <div class="hero-preview-controller-play">
+              <PlayVideoButton class="hero-preview-play-btn">
                 <PlayIcon :width="14" :height="16" />
-              </div>
+              </PlayVideoButton>
               <span>why</span>
             </div>
           </div>

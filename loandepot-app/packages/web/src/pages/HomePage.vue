@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { HeroSection } from '@/modules/hero-modules';
+import { SectionSlider } from '@/shared';
+
+const sections = ['Show Up: Evolve'];
 </script>
 
 <template>
-  <HeroSection />
+  <SectionSlider :sections="sections">
+    <HeroSection />
+  </SectionSlider>
 </template>
 
 <style scoped>
@@ -13,8 +18,5 @@ import { HeroSection } from '@/modules/hero-modules';
   overflow: hidden;
   margin: 0;
   padding: 0;
-}
-
-@media (max-width: 1200px) {
 }
 </style>
