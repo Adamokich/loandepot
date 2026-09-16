@@ -72,7 +72,7 @@ onMounted(async () => {
       </div>
       <div class="hero-modules-view-all">
         <span>Explore all modules</span>
-        <RouterLink class="hero-modules-view-all-link" to="#">
+        <RouterLink class="hero-modules-view-all-link" to="/modules">
           <PlusIcon />
         </RouterLink>
       </div>

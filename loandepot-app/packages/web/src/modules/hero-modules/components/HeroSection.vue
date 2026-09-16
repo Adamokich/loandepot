@@ -6,7 +6,6 @@ import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 import { inject } from 'vue';
 import HeaderMobile from '@/shared/components/HeaderMobile.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
-import MoreLink from '@/shared/components/MoreLink.vue';
 
 const modalVideostore = useModalVideoStore();
 const isMobile = inject(isMobileKey);

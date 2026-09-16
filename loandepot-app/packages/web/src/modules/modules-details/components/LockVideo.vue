@@ -76,6 +76,37 @@ const modalVideoStore = useModalVideoStore();
   }
 }
 
+@media (max-width: 1200px) {
+  .closed-video {
+    height: 195px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .closed-video {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 140px;
+  }
+  .closed-video-bottom {
+    span {
+      display: none;
+    }
+
+    button {
+      margin-right: 20px;
+    }
+  }
+
+  .unlock-video {
+    span {
+      display: none;
+    }
+  }
+}
+
 @media (hover: hover) {
   .closed-video-bottom:hover,
   .unlock-video:hover {

@@ -45,9 +45,11 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 
 <style scoped>
 .module-details {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  z-index: 2;
 }
 
 .module-details-header {
@@ -114,6 +116,7 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 
 .module-details-additionally {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: start;
 }
@@ -162,5 +165,54 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
+}
+
+@media (max-width: 1440px) {
+  .module-details-title {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 1340px) {
+  .module-details-title {
+    font-size: 45px;
+  }
+  .module-details-additionally {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .module-details-additionally-details {
+    align-items: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .module-details-title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 991px) {
+  .module-details-additionally {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .module-details-additionally {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .module-details-header {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .module-details-title {
+    font-size: 27px;
+  }
 }
 </style>

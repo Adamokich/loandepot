@@ -52,6 +52,33 @@ import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
   text-transform: uppercase;
 }
 
+@media (max-width: 1200px) {
+  .first-video {
+    height: 195px;
+  }
+}
+
+@media (max-width: 480px) {
+  .first-video-play {
+    span {
+      display: none;
+    }
+  }
+
+  .first-video {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    height: 140px;
+  }
+
+  .first-video-title {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+
 @media (hover: hover) {
   .first-video-play:hover {
     transform: translateY(-8px);
