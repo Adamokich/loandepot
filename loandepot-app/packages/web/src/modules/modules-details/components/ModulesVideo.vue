@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PlayVideoButton, useModalVideoStore } from '@/shared';
+import { useModalVideoStore } from '@/shared';
 
 import ShareIcon from '@/shared/components/icons/ShareIcon.vue';
 import type { IModule } from '@loandepot/types';
@@ -63,44 +63,16 @@ function openFirstVideo(): void {
   cursor: pointer;
 }
 
-@media (max-width: 1600px) {
-  .modules-video {
-    width: 100%;
-  }
-}
-
 @media (max-width: 1200px) {
   .modules-video {
     background-color: var(--color-accent);
-    border-radius: var(--border-radius);
-
-    padding: 64px 64px 44px 20px;
-  }
-}
-
-@media (max-width: 991px) {
-  .modules-video {
-    flex-shrink: 0;
-    flex-grow: 0;
+    padding-left: 28px;
   }
 }
 
 @media (max-width: 480px) {
   .modules-video {
-    padding-inline: 10px;
-  }
-}
-
-@media (hover: hover) {
-  .share:hover {
-    transform: translateY(-5px);
-  }
-
-  .first-video-play,
-  .closed-video-bottom {
-    &:hover {
-      transform: translateY(-8px);
-    }
+    padding-left: 15px;
   }
 }
 </style>

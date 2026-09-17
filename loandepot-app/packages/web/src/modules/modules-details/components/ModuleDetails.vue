@@ -45,9 +45,11 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 
 <style scoped>
 .module-details {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 738px;
+  max-height: 600px;
   gap: 30px;
   z-index: 2;
 }
@@ -74,6 +76,7 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 
 .module-details-tags {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
 }
@@ -169,17 +172,12 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 
 @media (max-width: 1440px) {
   .module-details-title {
-    font-size: 50px;
+    font-size: 36px;
   }
-}
 
-@media (max-width: 1340px) {
-  .module-details-title {
-    font-size: 45px;
-  }
   .module-details-additionally {
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
   }
 
   .module-details-additionally-details {
@@ -188,31 +186,31 @@ const { moduleId, tags, moduleName, moduleDescr, descr, name, fileUrl, imgUrl } 
 }
 
 @media (max-width: 1200px) {
-  .module-details-title {
-    font-size: 38px;
+  .module-details {
+    max-height: none;
   }
 }
 
 @media (max-width: 991px) {
+  .module-details {
+    padding-left: 28px;
+  }
+
   .module-details-additionally {
     flex-direction: row;
+    justify-content: space-between;
   }
 }
 
 @media (max-width: 767px) {
   .module-details-additionally {
     flex-direction: column;
-    gap: 20px;
-  }
-
-  .module-details-header {
-    justify-content: start;
   }
 }
 
 @media (max-width: 480px) {
-  .module-details-title {
-    font-size: 27px;
+  .module-details {
+    padding-inline: 15px;
   }
 }
 </style>

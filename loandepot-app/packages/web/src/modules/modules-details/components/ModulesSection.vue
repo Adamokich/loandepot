@@ -71,7 +71,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="modules-wrapper container">
+    <div class="modules-wrapper">
       <Swiper
         @swiper="onSwiperInit"
         @slide-change="onSlideChange"
@@ -91,6 +91,7 @@ onMounted(async () => {
           <div class="module-wrapper">
             <ModulesVideo :video-url="module.videoUrl" :module-img-url="module.moduleImgUrl" />
             <ModuleDetails
+              class="modules-details-anchor"
               :module-id="module.moduleId"
               :module-name="module.moduleName"
               :module-descr="module.moduleDescr"
@@ -101,37 +102,39 @@ onMounted(async () => {
               :file-url="module.fileUrl"
               :tags="module.tags"
             />
+            <div class="modules-slider-controller">
+              <button class="prev-slide" @click="onSlidePrev" :disabled="isFirstSlide">
+                <ArrowRightIcon color="#E2E2E2" />
+                <div class="prev-info">
+                  <span class="slide-number">{{ formatNumber(prevNumber()) }}</span>
+                  <span>Prev module</span>
+                </div>
+              </button>
+              <div class="module-slide">
+                <span>Module {{ currentSlideNumber }}:</span> {{ currentModule?.moduleName }}
+              </div>
+              <button class="next-slide" @click="onSlideNext" :disabled="isLastSlide">
+                <div class="prev-info">
+                  <span>Next module</span>
+                  <span class="slide-number">{{ formatNumber(nextNumber()) }}</span>
+                </div>
+                <ArrowRightIcon color="#E2E2E2" />
+              </button>
+            </div>
           </div>
         </SwiperSlide>
       </Swiper>
-      <div class="modules-slider-controller">
-        <button class="prev-slide" @click="onSlidePrev" :disabled="isFirstSlide">
-          <ArrowRightIcon color="#E2E2E2" />
-          <div class="prev-info">
-            <span class="slide-number">{{ formatNumber(prevNumber()) }}</span>
-            <span>Prev module</span>
-          </div>
-        </button>
-        <div class="module-slide">
-          <span>Module {{ currentSlideNumber }}:</span> {{ currentModule?.moduleName }}
-        </div>
-        <button class="next-slide" @click="onSlideNext" :disabled="isLastSlide">
-          <div class="prev-info">
-            <span>Next module</span>
-            <span class="slide-number">{{ formatNumber(nextNumber()) }}</span>
-          </div>
-          <ArrowRightIcon color="#E2E2E2" />
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .modules {
+  position: relative;
   display: grid;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
   grid-template-columns: 84px 1fr;
 }
 
@@ -144,7 +147,6 @@ onMounted(async () => {
 }
 
 .modules-wrapper {
-  position: relative;
   max-height: 720px;
   width: 100%;
 }
@@ -155,7 +157,6 @@ onMounted(async () => {
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  max-height: 650px;
 
   svg {
     cursor: pointer;
@@ -180,6 +181,7 @@ onMounted(async () => {
 }
 
 .module-wrapper {
+  position: relative;
   display: grid;
   gap: 64px;
   grid-template-columns: 619px 1fr;
@@ -213,7 +215,7 @@ onMounted(async () => {
 
 .modules-slider-controller {
   position: absolute;
-  right: -5px;
+  left: calc(619px + 64px);
   bottom: 0;
   display: flex;
   align-items: center;
@@ -235,6 +237,7 @@ onMounted(async () => {
   align-items: center;
   padding-block: 22px;
   padding-top: 21px;
+  width: 100%;
   gap: 24px;
   border-top: 1px solid var(--color-border-opacity);
 }
@@ -246,7 +249,17 @@ onMounted(async () => {
 
 .prev-slide {
   padding-right: 36px;
-  padding-left: 70px;
+  padding-left: 25px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -68px;
+    background-color: var(--color-border-opacity);
+    width: 68px;
+    height: 1px;
+  }
 }
 
 .slide-number {
@@ -265,63 +278,67 @@ onMounted(async () => {
   gap: 17px;
 }
 
-@media (max-width: 1530px) {
+.swiper-slide:not(.swiper-slide-active) {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.swiper-slide-active {
+  opacity: 1 !important;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (max-width: 1550px) {
   .modules-wrapper {
-    min-width: 360px;
+    min-width: 300px;
+  }
+
+  .module-wrapper {
     padding-right: 25px;
   }
 
-  .next-slide {
-    padding-right: 25px;
-    &::after {
-      display: none;
-    }
-
-    &::before {
-      left: -37px;
-    }
-  }
-
-  .prev-slide {
-    &::after {
-      left: -54px;
-    }
+  .modules-slider-controller {
+    left: calc(580px + 64px);
   }
 }
 
-@media (max-width: 1480px) {
+@media (max-width: 1530px) {
   .modules-slider-controller {
+    left: calc(538px + 64px);
+  }
+
+  .prev-slide {
+    padding-right: 15px;
+  }
+
+  .prev-slide,
+  .next-slide {
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .modules {
+    height: 100vh;
+  }
+
+  .module-wrapper {
+    height: 100vh;
+  }
+
+  .modules-slider-controller {
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: -100px;
-  }
-
-  .module-slide {
-    padding-inline: 40px;
-  }
-
-  .next-slide {
-    border-right: 1px solid var(--color-border-opacity);
-  }
-
-  .prev-slide {
-    padding-left: 25px;
-  }
-
-  .module-slide {
-    max-width: 281px;
-  }
-}
-
-@media (max-width: 1380px) {
-  .prev-slide {
-    padding-left: 10px;
-    padding-right: 20px;
-  }
-
-  .next-slide {
-    padding-right: 25px;
-    padding-left: 20px;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    width: 100%;
+    max-width: 100%;
+    z-index: 999;
   }
 }
 
@@ -331,69 +348,49 @@ onMounted(async () => {
   }
 
   .module-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .prev-info {
-    display: none;
-  }
-
-  .prev-slide,
-  .next-slide {
-    padding-inline: 32px;
+    grid-template-columns: 500px 1fr;
   }
 }
 
 @media (max-width: 991px) {
   .modules {
-    anchor-name: --modules;
+    height: auto;
+  }
+
+  .modules-wrapper {
+    max-height: none;
   }
 
   .module-wrapper {
-    position: static;
+    height: auto;
+    max-height: none;
     display: flex;
     flex-direction: column-reverse;
-    padding-left: 25px;
+    padding-bottom: 63px;
+    padding-right: 0;
   }
+}
 
-  .modules-slider-controller {
-    position-anchor: --modules;
-    bottom: anchor(bottom);
-    max-width: none;
-    font-size: 15px;
-    background-color: var(--color-dark);
-    color: var(--color-light);
-  }
-
+@media (max-width: 767px) {
   .module-slide {
-    max-width: 310px;
     flex-shrink: 0;
+    flex-grow: 0;
   }
 
-  .prev-slide,
-  .next-slide {
-    width: 100%;
-
-    svg {
-      margin-inline: auto;
-    }
-  }
-
-  .prev-slide {
-    padding-left: 0;
+  .prev-info {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .module-slide {
-    max-width: 110px;
+    flex-shrink: 1;
+    flex-grow: 1;
+  }
+  .modules-slider-controller {
     span {
       display: none;
     }
-  }
-
-  .next-slide {
-    padding-right: 0;
   }
 }
 </style>

@@ -78,8 +78,7 @@ const modalVideoStore = useModalVideoStore();
 
 @media (max-width: 1200px) {
   .closed-video {
-    height: 195px;
-    gap: 24px;
+    height: 190px;
   }
 }
 
@@ -88,29 +87,21 @@ const modalVideoStore = useModalVideoStore();
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 140px;
+    padding-left: 10px;
   }
+
+  .closed-video-title {
+    flex-shrink: 0;
+  }
+
   .closed-video-bottom {
-    span {
-      display: none;
-    }
-
+    justify-content: end;
     button {
-      margin-right: 20px;
+      margin-right: 10px;
     }
-  }
-
-  .unlock-video {
     span {
       display: none;
     }
-  }
-}
-
-@media (hover: hover) {
-  .closed-video-bottom:hover,
-  .unlock-video:hover {
-    transform: translateY(-8px);
   }
 }
 </style>
