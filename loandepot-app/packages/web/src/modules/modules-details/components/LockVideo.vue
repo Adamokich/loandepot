@@ -76,10 +76,32 @@ const modalVideoStore = useModalVideoStore();
   }
 }
 
-@media (hover: hover) {
-  .closed-video-bottom:hover,
-  .unlock-video:hover {
-    transform: translateY(-8px);
+@media (max-width: 1200px) {
+  .closed-video {
+    height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .closed-video {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+  }
+
+  .closed-video-title {
+    flex-shrink: 0;
+  }
+
+  .closed-video-bottom {
+    justify-content: end;
+    button {
+      margin-right: 10px;
+    }
+    span {
+      display: none;
+    }
   }
 }
 </style>

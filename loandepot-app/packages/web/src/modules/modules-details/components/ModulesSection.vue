@@ -6,16 +6,18 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { EffectFade } from 'swiper/modules';
 import ModulesVideo from './ModulesVideo.vue';
 import { useModulesStore, useSwiper } from '@/shared/index.ts';
-import { computed, onMounted } from 'vue';
+import { computed, inject, onMounted } from 'vue';
 import ModuleDetails from './ModuleDetails.vue';
 import ArrowRightIcon from '@/shared/components/icons/ArrowRightIcon.vue';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const { swiperInstance, activeIndex, onSlideNext, onSlidePrev, onSlideChange, onSwiperInit } =
   useSwiper();
 const modulesStore = useModulesStore();
 const swiperModules = [EffectFade];
+const isMobile = inject(isMobileKey);
 
 const totalSlides = computed(() => modulesStore.modules?.length);
 const currentModule = computed(() => {
@@ -59,7 +61,7 @@ onMounted(async () => {
 
 <template>
   <div class="modules">
-    <div class="modules-slider-panel">
+    <div v-if="!isMobile" class="modules-slider-panel">
       <div class="modules-slider-panel-wrapper">
         <LogoIcon @click="goToFirstSlide" />
         <div class="modules-slider-panel-controller">
@@ -69,16 +71,17 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="modules-wrapper container">
+    <div class="modules-wrapper">
       <Swiper
         @swiper="onSwiperInit"
         @slide-change="onSlideChange"
         :modules="swiperModules"
         :speed="250"
         :slides-per-view="1"
+        effect="fade"
         :fade-effect="{ mode: 'cross-fade' }"
         :simulate-touch="false"
-        effect="fade"
+        :auto-height="false"
       >
         <SwiperSlide
           class="modules-slider"
@@ -88,7 +91,7 @@ onMounted(async () => {
           <div class="module-wrapper">
             <ModulesVideo :video-url="module.videoUrl" :module-img-url="module.moduleImgUrl" />
             <ModuleDetails
-              class="some"
+              class="modules-details-anchor"
               :module-id="module.moduleId"
               :module-name="module.moduleName"
               :module-descr="module.moduleDescr"
@@ -99,35 +102,39 @@ onMounted(async () => {
               :file-url="module.fileUrl"
               :tags="module.tags"
             />
+            <div class="modules-slider-controller">
+              <button class="prev-slide" @click="onSlidePrev" :disabled="isFirstSlide">
+                <ArrowRightIcon color="#E2E2E2" />
+                <div class="prev-info">
+                  <span class="slide-number">{{ formatNumber(prevNumber()) }}</span>
+                  <span>Prev module</span>
+                </div>
+              </button>
+              <div class="module-slide">
+                <span>Module {{ currentSlideNumber }}:</span> {{ currentModule?.moduleName }}
+              </div>
+              <button class="next-slide" @click="onSlideNext" :disabled="isLastSlide">
+                <div class="prev-info">
+                  <span>Next module</span>
+                  <span class="slide-number">{{ formatNumber(nextNumber()) }}</span>
+                </div>
+                <ArrowRightIcon color="#E2E2E2" />
+              </button>
+            </div>
           </div>
         </SwiperSlide>
       </Swiper>
-      <div class="modules-slider-controller">
-        <button class="prev-slide" @click="onSlidePrev" :disabled="isFirstSlide">
-          <ArrowRightIcon color="#E2E2E2" />
-          <div class="prev-info">
-            <span class="slide-number">{{ formatNumber(prevNumber()) }}</span>
-            <span>Prev module</span>
-          </div>
-        </button>
-        <div class="module-slide">
-          Module {{ currentSlideNumber }}: {{ currentModule?.moduleName }}
-        </div>
-        <button class="next-slide" @click="onSlideNext" :disabled="isLastSlide">
-          <div class="prev-info">
-            <span>Next module</span>
-            <span class="slide-number">{{ formatNumber(nextNumber()) }}</span>
-          </div>
-          <ArrowRightIcon color="#E2E2E2" />
-        </button>
-      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .modules {
+  position: relative;
   display: grid;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   grid-template-columns: 84px 1fr;
 }
 
@@ -140,8 +147,8 @@ onMounted(async () => {
 }
 
 .modules-wrapper {
-  position: relative;
   max-height: 720px;
+  width: 100%;
 }
 
 .modules-slider-panel-wrapper {
@@ -150,7 +157,6 @@ onMounted(async () => {
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  max-height: 650px;
 
   svg {
     cursor: pointer;
@@ -175,6 +181,7 @@ onMounted(async () => {
 }
 
 .module-wrapper {
+  position: relative;
   display: grid;
   gap: 64px;
   grid-template-columns: 619px 1fr;
@@ -208,18 +215,17 @@ onMounted(async () => {
 
 .modules-slider-controller {
   position: absolute;
-  right: 0;
+  left: calc(619px + 64px);
   bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
-  max-width: 738px;
+  max-width: 788px;
   max-height: 72px;
   font-size: 12px;
   font-weight: 700;
   color: var(--color-dark);
-  z-index: 20;
+  z-index: 1;
 }
 
 .prev-slide,
@@ -230,36 +236,28 @@ onMounted(async () => {
   justify-content: space-between;
   align-items: center;
   padding-block: 22px;
+  padding-top: 21px;
+  width: 100%;
   gap: 24px;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    background-color: var(--color-border-opacity);
-  }
+  border-top: 1px solid var(--color-border-opacity);
 }
 
 .next-slide {
-  &::after {
-    height: 63px;
-    width: 1px;
-    right: -20px;
-  }
-
-  &::before {
-    top: 0;
-    left: -48px;
-    width: 229px;
-    height: 1px;
-  }
+  padding-left: 36px;
+  padding-right: 25px;
 }
 
 .prev-slide {
-  &::after {
-    top: 0;
-    right: -47px;
-    width: 254px;
+  padding-right: 36px;
+  padding-left: 25px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -68px;
+    background-color: var(--color-border-opacity);
+    width: 68px;
     height: 1px;
   }
 }
@@ -278,5 +276,121 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 17px;
+}
+
+.swiper-slide:not(.swiper-slide-active) {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.swiper-slide-active {
+  opacity: 1 !important;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (max-width: 1550px) {
+  .modules-wrapper {
+    min-width: 300px;
+  }
+
+  .module-wrapper {
+    padding-right: 25px;
+  }
+
+  .modules-slider-controller {
+    left: calc(580px + 64px);
+  }
+}
+
+@media (max-width: 1530px) {
+  .modules-slider-controller {
+    left: calc(538px + 64px);
+  }
+
+  .prev-slide {
+    padding-right: 15px;
+  }
+
+  .prev-slide,
+  .next-slide {
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .modules {
+    height: 100vh;
+  }
+
+  .module-wrapper {
+    height: 100vh;
+  }
+
+  .modules-slider-controller {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    width: 100%;
+    max-width: 100%;
+    z-index: 999;
+  }
+}
+
+@media (max-width: 1200px) {
+  .modules {
+    grid-template-columns: 1fr;
+  }
+
+  .module-wrapper {
+    grid-template-columns: 500px 1fr;
+  }
+}
+
+@media (max-width: 991px) {
+  .modules {
+    height: auto;
+  }
+
+  .modules-wrapper {
+    max-height: none;
+  }
+
+  .module-wrapper {
+    height: auto;
+    max-height: none;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 63px;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .module-slide {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .prev-info {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .module-slide {
+    flex-shrink: 1;
+    flex-grow: 1;
+  }
+  .modules-slider-controller {
+    span {
+      display: none;
+    }
+  }
 }
 </style>

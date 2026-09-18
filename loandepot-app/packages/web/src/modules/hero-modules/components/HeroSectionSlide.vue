@@ -2,7 +2,7 @@
 import ArrowRightIcon from '@/shared/components/icons/ArrowRightIcon.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys';
 import { formatNumber } from '@/shared/utils';
-import { computed, inject, type CSSProperties, type Ref } from 'vue';
+import { computed, inject, type CSSProperties } from 'vue';
 
 const { moduleId, moduleName, descr, moduleImgUrl, isActive } = defineProps<{
   moduleId: number;

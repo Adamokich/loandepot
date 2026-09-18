@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { PlayVideoButton, useModalVideoStore } from '@/shared';
+import { useModalVideoStore } from '@/shared';
 
 import ShareIcon from '@/shared/components/icons/ShareIcon.vue';
 import type { IModule } from '@loandepot/types';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import PlayVideo from './PlayVideo.vue';
 import LockVideo from './LockVideo.vue';
+import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const modalVideoStore = useModalVideoStore();
 const firstVideoOpened = ref<boolean>(false);
 const { videoUrl, moduleImgUrl } = defineProps<Pick<IModule, 'videoUrl' | 'moduleImgUrl'>>();
+const isMobile = inject(isMobileKey);
 const bgImgStyles = `rgba(42, 42, 42, 0.44) url(${moduleImgUrl}) center center / cover no-repeat`;
 
 function openFirstVideo(): void {
@@ -19,7 +21,7 @@ function openFirstVideo(): void {
 </script>
 
 <template>
-  <div class="modules-video" :style="{ background: bgImgStyles }">
+  <div class="modules-video" :style="{ background: !isMobile ? bgImgStyles : '' }">
     <PlayVideo @click="openFirstVideo" />
     <LockVideo :is-opened="firstVideoOpened" :video-url="videoUrl" />
     <div class="share">
@@ -31,6 +33,8 @@ function openFirstVideo(): void {
 
 <style scoped>
 .modules-video {
+  position: relative;
+  z-index: 30;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,16 +63,16 @@ function openFirstVideo(): void {
   cursor: pointer;
 }
 
-@media (hover: hover) {
-  .share:hover {
-    transform: translateY(-5px);
+@media (max-width: 1200px) {
+  .modules-video {
+    background-color: var(--color-accent);
+    padding-left: 28px;
   }
+}
 
-  .first-video-play,
-  .closed-video-bottom {
-    &:hover {
-      transform: translateY(-8px);
-    }
+@media (max-width: 480px) {
+  .modules-video {
+    padding-left: 15px;
   }
 }
 </style>
