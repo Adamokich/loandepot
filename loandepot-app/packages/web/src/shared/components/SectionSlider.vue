@@ -18,7 +18,7 @@ const totalSlides = computed<number>(() => {
 });
 
 function nextSlide(): void {
-  if (!isMobile && currentSlide.value < totalSlides.value - 1) {
+  if (!isMobile?.value && currentSlide.value < totalSlides.value - 1) {
     currentSlide.value++;
   }
 }
@@ -43,8 +43,10 @@ function goToFirstSlide(): void {
         </div>
         <ArrowDownIcon
           class="arrow-down"
-          v-if="currentSlide < totalSlides - 1"
+          v-if="currentSlide < totalSlides"
           @click="nextSlide"
+          :width="20"
+          :height="24"
         />
       </div>
     </div>
@@ -75,7 +77,6 @@ function goToFirstSlide(): void {
   flex-direction: column;
   justify-content: space-between;
   padding: 37px 25px 10px 25px;
-  height: 734px;
   border-right: 1px solid rgb(0 0 0 / 0.2);
 }
 

@@ -73,6 +73,7 @@ onMounted(async () => {
     </div>
     <div class="modules-wrapper">
       <Swiper
+        v-if="modulesStore.modules?.length"
         @swiper="onSwiperInit"
         @slide-change="onSlideChange"
         :modules="swiperModules"

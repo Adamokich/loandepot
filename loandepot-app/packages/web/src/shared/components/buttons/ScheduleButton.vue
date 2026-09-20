@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ScheduleIcon from './icons/ScheduleIcon.vue';
+import ScheduleIcon from '../icons/ScheduleIcon.vue';
 </script>
 
 <template>

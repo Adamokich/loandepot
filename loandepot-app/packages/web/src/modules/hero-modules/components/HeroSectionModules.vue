@@ -149,7 +149,6 @@ onMounted(async () => {
 }
 
 .hero-modules-view-all-link {
-  display: block;
   width: 20px;
   height: 20px;
   background-color: var(--color-success);

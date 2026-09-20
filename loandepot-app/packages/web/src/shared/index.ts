@@ -1,5 +1,5 @@
 export { default as VideoModal } from './components/VideoModal.vue';
-export { default as ScheduleButton } from './components/ScheduleButton.vue';
+export { default as ScheduleButton } from './components/buttons/ScheduleButton.vue';
 export { default as BaseButton } from './components/buttons/BaseButton.vue';
 export { default as PlayVideoButton } from './components/buttons/PlayVideoButton.vue';
 export { default as HeaderMobile } from './components/HeaderMobile.vue';
