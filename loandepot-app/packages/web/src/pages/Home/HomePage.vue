@@ -8,8 +8,8 @@ const sections = ['Show Up: Evolve', 'Show Up: Evolve'];
 
 <template>
   <SectionSlider :sections="sections">
-    <HeroSection />
     <DifferenceSection />
+    <HeroSection />
   </SectionSlider>
 </template>
 

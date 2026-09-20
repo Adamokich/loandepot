@@ -2,19 +2,17 @@
 import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 import QuetionIcon from '@/shared/components/icons/QuetionIcon.vue';
 import Card from './Card.vue';
-import { ref } from 'vue';
 import { formatNumber } from '@/shared/utils/formatters.ts';
 
-const { cardNumber, cardDescr } = defineProps<{
+const { cardNumber, cardDescr, isActive } = defineProps<{
   cardNumber: number;
   cardDescr: string;
+  isActive: boolean;
 }>();
 
 const emit = defineEmits<{ opened: [] }>();
-const isActive = ref<boolean>(false);
 
 function clickOnButton(): void {
-  isActive.value = true;
   emit('opened');
 }
 </script>

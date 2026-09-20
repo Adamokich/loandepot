@@ -20,20 +20,25 @@ const cards = [
   },
 ];
 
-const openedCards = ref<number>(0);
-
+const totalOpenedCards = ref<number[]>([0]);
 const openedAllCards = computed<boolean>(() => {
-  return openedCards.value === cards.length * 2 ? true : false;
+  return totalOpenedCards.value.length > cards.length ? true : false;
 });
 
-function totalCardsInc(): void {
-  openedCards.value++;
+const inactiveClass = computed(() => {
+  return (num: number) => {
+    return totalOpenedCards.value.includes(num) ? 'card-info' : 'card-info is-inactive';
+  };
+});
+
+function onOpenCard(num: number): void {
+  totalOpenedCards.value.push(num);
 }
 </script>
 
 <template>
   <div class="difference">
-    <div class="difference-wrapper">
+    <div class="difference-wrapper" :style="openedAllCards ? { gap: '196px' } : ''">
       <div class="difference-left-content">
         <div class="difference-left-top">
           <h2 class="difference-title">The difference</h2>
@@ -47,24 +52,45 @@ function totalCardsInc(): void {
               :key="card.cardNumber"
               :card-number="card.cardNumber"
               :card-descr="card.cardDescr"
-              @opened="totalCardsInc"
+              :is-active="true"
             />
           </div>
           <div class="cards-right-info">
             <Card class="card-info-title"> How loan officer works <span>today</span> </Card>
             <CardInfo
-              v-for="card in cards"
-              :key="card.cardNumber"
-              :card-number="card.cardNumber"
-              :card-descr="card.cardDescr"
-              @opened="totalCardsInc"
+              key="1"
+              :card-number="1"
+              :is-active="totalOpenedCards.includes(1)"
+              :class="inactiveClass(0)"
+              card-descr="First step with some text and explanation"
+              @opened="onOpenCard(1)"
+            />
+            <CardInfo
+              key="2"
+              :card-number="2"
+              :is-active="totalOpenedCards.includes(2)"
+              :class="inactiveClass(1)"
+              class="card-info"
+              card-descr="Second step with some text and explanation"
+              @opened="onOpenCard(2)"
+            />
+            <CardInfo
+              key="3"
+              :card-number="3"
+              :is-active="totalOpenedCards.includes(3)"
+              :class="inactiveClass(2)"
+              class="card-info"
+              card-descr="Third step with some text and explanation"
+              @opened="onOpenCard(3)"
             />
           </div>
         </div>
       </div>
       <div class="difference-right-content">
-        <RightContentInactive v-if="!openedAllCards" />
-        <RightContentActive v-else />
+        <Transition name="fade" mode="out-in">
+          <RightContentInactive v-if="!openedAllCards" />
+          <RightContentActive v-else />
+        </Transition>
       </div>
     </div>
   </div>
@@ -78,7 +104,6 @@ function totalCardsInc(): void {
 .difference-wrapper {
   display: grid;
   grid-template-columns: 590px 669px;
-  gap: 196px;
 }
 
 .difference-left-content {
@@ -132,5 +157,24 @@ function totalCardsInc(): void {
       height: 4px;
     }
   }
+}
+
+.card-info {
+  transition: opacity 0.5s ease;
+}
+
+.is-inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
