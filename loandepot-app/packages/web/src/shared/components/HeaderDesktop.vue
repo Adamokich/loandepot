@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ScheduleButton from './ScheduleButton.vue';
+import ScheduleButton from './buttons/ScheduleButton.vue';
 </script>
 
 <template>

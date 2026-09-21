@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import ScheduleButton from './buttons/ScheduleButton.vue';
 import LogoIcon from './icons/LogoIcon.vue';
-import ScheduleButton from './ScheduleButton.vue';
 </script>
 
 <template>

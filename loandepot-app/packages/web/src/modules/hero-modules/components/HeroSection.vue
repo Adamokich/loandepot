@@ -37,7 +37,7 @@ const isMobile = inject(isMobileKey);
               @click="modalVideostore.openVideoModal('https://youtube.com/embed/uyAMGPoE1dU')"
               class="hero-preview-controller"
             >
-              <PlayVideoButton class="hero-preview-play-btn">
+              <PlayVideoButton>
                 <PlayIcon :width="14" :height="16" />
               </PlayVideoButton>
               <span>why</span>
