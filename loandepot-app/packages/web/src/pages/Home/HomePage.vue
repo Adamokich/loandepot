@@ -2,15 +2,21 @@
 import { HeroSection } from '@/modules/hero-modules';
 import { SectionSlider } from '@/shared';
 import DifferenceSection from './components/DifferenceSection/DifferenceSection.vue';
+import { inject } from 'vue';
+import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const sections = ['Show Up: Evolve', 'Show Up: Evolve'];
+const isMobile = inject(isMobileKey);
 </script>
 
 <template>
-  <SectionSlider :sections="sections">
+  <component
+    :is="!isMobile ? SectionSlider : 'main'"
+    v-bind="!isMobile ? { sections: sections } : {}"
+  >
+    <!-- <HeroSection /> -->
     <DifferenceSection />
-    <HeroSection />
-  </SectionSlider>
+  </component>
 </template>
 
 <style scoped>

@@ -44,6 +44,7 @@ function clickOnButton(): void {
   padding-block: 22px 20px;
   padding-right: 30px;
   max-height: 83px;
+  transition: opacity 0.5s ease;
 }
 
 .card-info-active,
@@ -122,7 +123,7 @@ function clickOnButton(): void {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,

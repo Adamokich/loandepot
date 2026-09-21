@@ -79,4 +79,52 @@ const modalVideoStore = useModalVideoStore();
     font-weight: 700;
   }
 }
+
+@media (max-width: 1400px) {
+  .difference-right-video-controller {
+    left: auto;
+    right: 32px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .difference-right-active {
+    max-width: none;
+  }
+
+  .difference-right-top {
+    padding-left: 20px;
+  }
+
+  .difference-right-active {
+    padding-top: 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .difference-right-active-top :deep(a) {
+    display: none;
+  }
+
+  .difference-right-video-controller {
+    right: auto;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .difference-right-top {
+    display: none;
+  }
+
+  .difference-right-video {
+    img {
+      height: auto;
+    }
+  }
+}
 </style>
