@@ -4,14 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/main.ts"
+    "dev": "tsx watch src/main.ts",
+    "db:seed": "tsx src/database/seed.ts"
   },
   "dependencies": {
     "@loandepot/types": "^1.0.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "inversify": "^8.2.3",
     "mongoose": "^9.9.3",
-    "tslog": "^5.1.0"
+    "reflect-metadata": "^0.2.2",
+    "tslog": "^4.11.0",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",

@@ -1,12 +1,33 @@
-import express, { Application } from "express";
+import express, {
+  Application,
+  NextFunction,
+  Router,
+  Request,
+  Response,
+} from "express";
 import { Server } from "http";
+import { ILogger } from "./modules/logger/logger.interface.js";
+import { inject, injectable } from "inversify";
+import { TYPES } from "./types.js";
+import { ModuleController } from "./modules/module/module.controller.js";
+import { UserController } from "./modules/user/user.controller.js";
+import { ReviewController } from "./modules/review/review.controller.js";
+import { AppointmentController } from "./modules/appointment/appointment.conroller.js";
 
+@injectable()
 export class App {
   private _app: Application;
   port: number;
   server!: Server;
 
-  constructor() {
+  constructor(
+    @inject(TYPES.Logger) private logger: ILogger,
+    @inject(TYPES.ModuleController) private moduleController: ModuleController,
+    @inject(TYPES.UserController) private userController: UserController,
+    @inject(TYPES.ReviewController) private reviewController: ReviewController,
+    @inject(TYPES.AppointmentController)
+    private appointmentController: AppointmentController,
+  ) {
     this._app = express();
     this.port = Number(process.env.PORT);
   }
@@ -17,12 +38,31 @@ export class App {
 
   private useMiddleware(): void {
     this._app.use(express.json());
+
+    this._app.use((req: Request, res: Response, next: NextFunction) => {
+      res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+
+      next();
+    });
   }
 
   private useRoutes(): void {
-    this._app.get("/health", (req, res) => {
-      res.status(200).json({ message: "Бэк работает" });
-    });
+    const routes = {
+      "/api": [this.moduleController, this.reviewController],
+      "/users": [this.userController],
+      "/appointments": [this.appointmentController],
+    };
+
+    for (const [endpoint, controllers] of Object.entries(routes)) {
+      const router = Router();
+
+      for (const contoller of controllers) {
+        router.use(contoller.router);
+      }
+
+      this._app.use(endpoint, router);
+    }
   }
 
   public async init(): Promise<void> {
@@ -30,7 +70,7 @@ export class App {
     this.useRoutes();
 
     this.server = this.app.listen(this.port, () => {
-      console.log("Успешный запуск сервера");
+      this.logger.log("Success!");
     });
   }
 }
