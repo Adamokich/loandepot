@@ -3,8 +3,8 @@ import { ScheduleButton } from '@/shared';
 </script>
 
 <template>
-  <div class="difference-right-active">
-    <div class="difference-right-active-top">
+  <div class="difference-right-inactive">
+    <div class="difference-right-inactive-top">
       <ScheduleButton />
     </div>
     <img src="../../../../app/assets/img/ShowUpBg_1.jpg" alt="video preview" />
@@ -12,19 +12,66 @@ import { ScheduleButton } from '@/shared';
 </template>
 
 <style scoped>
-.difference-right-active {
+.difference-right-inactive {
   padding-top: 102px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 40px;
 }
 
-.difference-right-active-top :deep(a) {
+.difference-right-inactive-top :deep(a) {
   justify-content: end;
   padding-right: 0;
   position: absolute;
   right: -40px;
   top: 0;
+}
+
+@media (max-width: 1400px) {
+  .difference-right-inactive {
+    gap: 40px;
+    padding-top: 45px;
+  }
+
+  .difference-right-inactive-top :deep(a) {
+    position: static;
+    width: 100%;
+    max-width: 600px;
+    padding-top: 0;
+  }
+
+  .difference-right-inactive {
+    img {
+      max-width: 600px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .difference-right-inactive {
+    img {
+      max-width: 530px;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .difference-right-inactive {
+    padding-top: 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .difference-right-inactive-top :deep(a) {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .difference-right-inactive {
+    gap: 0;
+  }
 }
 </style>
