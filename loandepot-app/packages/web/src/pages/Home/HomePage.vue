@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { HeroSection } from '@/modules/hero-modules';
 import { SectionSlider } from '@/shared';
-import DifferenceSection from './components/DifferenceSection/DifferenceSection.vue';
+import DifferenceSection from './components/difference-section/DifferenceSection.vue';
 import { inject } from 'vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
+import ExploreModules from './components/explore-modules-section/ExploreModules.vue';
 
-const sections = ['Show Up: Evolve', 'Show Up: Evolve'];
+const sections = ['Show Up: Evolve', 'Show Up: Evolve', 'Explore  the modules'];
 const isMobile = inject(isMobileKey);
 </script>
 
@@ -14,8 +15,9 @@ const isMobile = inject(isMobileKey);
     :is="!isMobile ? SectionSlider : 'main'"
     v-bind="!isMobile ? { sections: sections } : {}"
   >
-    <!-- <HeroSection /> -->
+    <HeroSection />
     <DifferenceSection />
+    <ExploreModules />
   </component>
 </template>
 
