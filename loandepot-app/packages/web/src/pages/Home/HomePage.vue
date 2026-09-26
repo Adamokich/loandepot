@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { HeroSection } from '@/modules/hero-modules';
-import { SectionSlider } from '@/shared';
+import { HeaderMobile, SectionSlider } from '@/shared';
 import DifferenceSection from './components/difference-section/DifferenceSection.vue';
 import { inject } from 'vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
@@ -15,6 +15,7 @@ const isMobile = inject(isMobileKey);
     :is="!isMobile ? SectionSlider : 'main'"
     v-bind="!isMobile ? { sections: sections } : {}"
   >
+    <HeaderMobile v-if="isMobile" />
     <HeroSection />
     <DifferenceSection />
     <ExploreModules />
@@ -22,11 +23,8 @@ const isMobile = inject(isMobileKey);
 </template>
 
 <style scoped>
-.home-page {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+main {
+  display: flex;
+  flex-direction: column;
 }
 </style>
