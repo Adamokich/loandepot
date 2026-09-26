@@ -215,8 +215,9 @@ onMounted(async () => {
   .hero-modules {
     position: static;
     max-width: 100%;
-    height: 100vh;
     margin-top: 47px;
+    padding-left: 35px;
+    height: 40vh;
   }
 
   .hero-modules-wrapper {
@@ -245,6 +246,10 @@ onMounted(async () => {
 }
 
 @media (max-width: 767px) {
+  .hero-modules {
+    height: 50vh;
+  }
+
   .hero-modules-actions {
     display: none;
   }
