@@ -103,6 +103,10 @@ function onOpenCard(num: number): void {
   gap: 17px;
 }
 
+.card-info {
+  transition: opacity 1s ease;
+}
+
 .is-inactive {
   opacity: 0;
   pointer-events: none;

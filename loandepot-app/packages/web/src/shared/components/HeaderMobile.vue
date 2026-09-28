@@ -14,7 +14,8 @@ import LogoIcon from './icons/LogoIcon.vue';
 .hero-header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
+  padding: 20px;
 
   p {
     font-size: 20px;
@@ -23,6 +24,32 @@ import LogoIcon from './icons/LogoIcon.vue';
 
   span {
     color: var(--color-accent);
+  }
+
+  :deep(a) {
+    padding: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-header {
+    :deep(a) {
+      padding-right: 40px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-header {
+    position: fixed;
+    z-index: 1000;
+    align-items: end;
+    background-color: var(--color-light);
+    width: 100%;
+
+    :deep(a) {
+      padding: 0;
+    }
   }
 }
 </style>

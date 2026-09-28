@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { BaseButton, HeaderDesktop, PlayVideoButton, VideoButton } from '@/shared';
+import { BaseButton, HeaderDesktop, HeaderMobile, PlayVideoButton, VideoButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import HeroSectionModules from './HeroSectionModules.vue';
 import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';
 import { inject } from 'vue';
-import HeaderMobile from '@/shared/components/HeaderMobile.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 
 const modalVideostore = useModalVideoStore();
@@ -15,7 +14,6 @@ const isMobile = inject(isMobileKey);
   <div class="hero-section">
     <div class="hero-wrapper container">
       <HeaderDesktop v-if="!isMobile" />
-      <HeaderMobile v-else />
       <div class="hero-main">
         <div class="hero-left">
           <div class="hero-info">
@@ -159,6 +157,10 @@ const isMobile = inject(isMobileKey);
 }
 
 @media (max-width: 1200px) {
+  .hero-wrapper {
+    padding-left: 35px;
+  }
+
   .hero-left {
     flex-shrink: 0;
   }
@@ -179,6 +181,13 @@ const isMobile = inject(isMobileKey);
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-wrapper {
+    padding-top: 80px;
+    padding-left: 20px;
   }
 }
 

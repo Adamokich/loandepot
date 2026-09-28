@@ -136,6 +136,10 @@ function onChangeActiveTab(newValue: boolean): void {
   pointer-events: none;
 }
 
+.card-info {
+  transition: opacity 2s ease;
+}
+
 .info-card-tabs span.active-tab::before {
   opacity: 1;
   transform: translateY(0);
@@ -154,7 +158,7 @@ function onChangeActiveTab(newValue: boolean): void {
 @media (max-width: 480px) {
   .info-cards {
     position: absolute;
-    padding-left: 24px;
+    padding-left: 16px;
     bottom: 35px;
     left: 5px;
     z-index: 10;

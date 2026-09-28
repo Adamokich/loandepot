@@ -5,8 +5,13 @@ import ExploreSectionSlide from './ExploreSectionSlide.vue';
 import type { IModule } from '@loandepot/types';
 import type { Swiper as SwiperCore } from 'swiper';
 import { Autoplay, Scrollbar } from 'swiper/modules';
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import { MODULES_AUTOPLAY_DELAY } from '@/shared/constants/sliderConfig.ts';
+import {
+  isMobileKey,
+  isMobileLargeKey,
+  isMobileSmallKey,
+} from '@/shared/constants/injectionKeys.ts';
 
 const { modules, activeIndex } = defineProps<{ modules: IModule[]; activeIndex: number }>();
 const emit = defineEmits<{
@@ -15,8 +20,23 @@ const emit = defineEmits<{
   (e: 'autoplay-progress', progress: number): void;
 }>();
 
+const isMobile = inject(isMobileKey);
+const isMobileL = inject(isMobileLargeKey);
+const isMobileS = inject(isMobileSmallKey);
 const activeModule = computed(() => modules[activeIndex].moduleId);
 const swiperModules = [Autoplay, Scrollbar];
+
+const offsetSlides = computed(() => {
+  if (isMobileS?.value) {
+    return window.innerWidth < 480 ? 50 : 150;
+  } else if (isMobileL?.value) {
+    return 420;
+  } else if (isMobile?.value) {
+    return 700;
+  } else {
+    return 420;
+  }
+});
 
 function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number): void {
   emit('autoplay-progress', (1 - progress) * 100);
@@ -26,7 +46,7 @@ function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number)
 <template>
   <div class="right-content">
     <div class="right-content-top">
-      <ScheduleButton color="#fff" icon-color="#fff" />
+      <ScheduleButton v-if="!isMobile" color="#fff" icon-color="#fff" />
       <Swiper
         class="right-content-slider"
         @swiper="(swiper) => emit('init', swiper)"
@@ -35,7 +55,7 @@ function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number)
         :modules="swiperModules"
         :slides-per-view="'auto'"
         :space-between="24"
-        :slides-offset-after="420"
+        :slides-offset-after="offsetSlides"
         :simulate-touch="false"
         :scrollbar="{
           el: '.custom-slider-scrollbar',
@@ -126,5 +146,35 @@ function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number)
   height: 30px;
   border-radius: 50%;
   cursor: grab;
+}
+
+@media (max-width: 1440px) {
+  .right-content-slider {
+    left: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .right-content-slider {
+    position: static;
+    padding-left: 20px;
+    padding-top: 30px;
+  }
+
+  .slider-scrollbar-container {
+    transform: translateX(0);
+    left: 20px;
+    top: 500px;
+  }
+
+  .right-content-slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .slider-scrollbar-container {
+    display: none;
+  }
 }
 </style>

@@ -73,4 +73,31 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: 1fr 577px;
 }
+
+@media (max-width: 1200px) {
+  .explore-modules-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .explore-modules {
+    padding-top: 325px;
+  }
+}
+
+@media (max-width: 767px) {
+  .explore-modules-wrapper {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-modules {
+    padding-top: 180px;
+  }
+}
 </style>

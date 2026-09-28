@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { BaseButton } from '@/shared';
+import { BaseButton, ScheduleButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
-import { computed } from 'vue';
+import { isMobileKey, isMobileSmallKey } from '@/shared/constants/injectionKeys';
+import { computed, inject } from 'vue';
 
 const emit = defineEmits<{ prev: []; next: [] }>();
+const isMobile = inject(isMobileKey);
 const { activeIndex, totalSlides, progress } = defineProps<{
   activeIndex: number;
   totalSlides: number;
@@ -11,20 +13,21 @@ const { activeIndex, totalSlides, progress } = defineProps<{
 }>();
 
 const activeClass = computed(() => (activeIndex !== 0 ? true : false));
+const isMobileS = inject(isMobileSmallKey);
 </script>
 
 <template>
   <div class="left-content">
     <div class="left-content-top">
       <div class="left-content-details">
-        <p>show<span>up</span>:evolve</p>
+        <p v-if="!isMobileS">show<span>up</span>:evolve</p>
         <div class="left-content-info">
-          <h2 class="left-content-title">Explore the Modules</h2>
+          <h2 class="left-content-title">Explore <br />the Modules</h2>
           <p class="left-content-descr">Fifth step with some text and explanation</p>
         </div>
         <BaseButton>Get access</BaseButton>
       </div>
-      <div class="left-content-slider-controller">
+      <div v-if="!isMobile" class="left-content-slider-controller">
         <button
           class="prev-slide-btn"
           :class="{ 'active-btn': activeClass }"
@@ -82,6 +85,7 @@ const activeClass = computed(() => (activeIndex !== 0 ? true : false));
         </blockquote>
       </figure>
     </div>
+    <ScheduleButton v-if="isMobile && !isMobileS" class="schedule-btn" />
   </div>
 </template>
 
@@ -230,5 +234,28 @@ const activeClass = computed(() => (activeIndex !== 0 ? true : false));
 .author-quote {
   font-weight: 900;
   color: var(--color-light-opacity);
+}
+
+@media (max-width: 1200px) {
+  .left-content {
+    position: relative;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    padding-inline: 20px;
+    padding-top: 45px;
+  }
+
+  .schedule-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .left-content-bottom {
+    display: none;
+  }
 }
 </style>

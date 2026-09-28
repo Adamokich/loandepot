@@ -40,13 +40,12 @@ const rightContentActiveClass = computed(() => {
 
 <template>
   <div class="difference">
-    <HeaderMobile class="header-mobile" />
     <div :class="rightContentActiveClass">
       <div class="difference-left-content">
         <div class="difference-left-top">
           <h2 class="difference-title">The difference</h2>
           <p class="difference-descr">A retail LO’s guide to combating digital disruption</p>
-          <div class="schedule-btn-link">
+          <div class="schedule-btn-link" v-if="!isMobileS">
             <ScheduleButton icon-color="#ffffff" color="#ffffff" />
           </div>
         </div>
@@ -69,10 +68,6 @@ const rightContentActiveClass = computed(() => {
 <style scoped>
 .difference {
   height: 100vh;
-}
-
-.header-mobile {
-  display: none;
 }
 
 .difference-wrapper {
@@ -102,7 +97,7 @@ const rightContentActiveClass = computed(() => {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.1s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
@@ -171,6 +166,11 @@ const rightContentActiveClass = computed(() => {
 }
 
 @media (max-width: 767px) {
+  .difference-left-content {
+    padding-block: 0;
+    justify-content: space-around;
+  }
+
   .schedule-btn-link {
     right: -30px;
     top: -95px;
@@ -195,20 +195,11 @@ const rightContentActiveClass = computed(() => {
     position: absolute;
     width: 100%;
     left: 0;
+    top: 0;
     padding-block: 25px 30px;
     padding-inline: 24px;
     background-color: var(--color-light);
     color: var(--color-dark);
-  }
-
-  .header-mobile {
-    display: flex;
-    padding-inline: 24px;
-    padding-bottom: 18px;
-  }
-
-  .header-mobile :deep(a) {
-    padding-right: 0;
   }
 
   .schedule-btn-link {
