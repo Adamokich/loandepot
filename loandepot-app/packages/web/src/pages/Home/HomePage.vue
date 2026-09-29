@@ -5,6 +5,7 @@ import DifferenceSection from './components/difference-section/DifferenceSection
 import { inject } from 'vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 import ExploreModules from './components/explore-modules-section/ExploreModules.vue';
+import { EvolutionSection } from '@/modules/join-evolution/index.ts';
 
 const sections = ['Show Up: Evolve', 'Show Up: Evolve', 'Explore  the modules'];
 const isMobile = inject(isMobileKey);
@@ -16,9 +17,10 @@ const isMobile = inject(isMobileKey);
     v-bind="!isMobile ? { sections: sections } : {}"
   >
     <HeaderMobile v-if="isMobile" />
-    <HeroSection />
+    <!-- <HeroSection />
     <DifferenceSection />
-    <ExploreModules />
+    <ExploreModules /> -->
+    <EvolutionSection />
   </component>
 </template>
 

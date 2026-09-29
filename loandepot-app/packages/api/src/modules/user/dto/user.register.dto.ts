@@ -21,7 +21,7 @@ export const userRegisterDto = z.object({
     .string()
     .min(1, { error: "Необходимо указать специальность" })
     .trim(),
-  country: z.string().min(1, { error: "Необходимо указать страну" }),
+  city: z.string().min(1, { error: "Необходимо указать город" }),
 });
 
 export type IUserRegisterDto = z.infer<typeof userRegisterDto>;
