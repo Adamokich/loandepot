@@ -102,7 +102,7 @@ async function handleFormSuccess(outputData: JoinEvolutionUser): Promise<void> {
         </div>
       </Field>
     </div>
-    <span v-if="joinEvolutionStore.success">Успешная регистрация</span>
+    <span class="success-msg" v-if="joinEvolutionStore.success">Успешная регистрация</span>
     <div class="form-bottom">
       <SubmitButton type="submit">Send</SubmitButton>
       <p>By clicking «Send» I am agreed with <RouterLink to="#">Privacy Policy.</RouterLink></p>
@@ -115,11 +115,11 @@ async function handleFormSuccess(outputData: JoinEvolutionUser): Promise<void> {
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
 
-  span {
-    color: var(--color-success);
-    font-weight: 700;
-  }
+.success-msg {
+  color: var(--color-success);
+  font-weight: 700;
 }
 
 .form-top {
