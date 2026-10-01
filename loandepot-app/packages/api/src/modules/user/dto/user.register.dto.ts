@@ -1,13 +1,16 @@
+import { CITY_SELECT_OPTIONS, PHONE_NUMBER_REGEX } from "@loandepot/shared";
 import z from "zod";
 
-const phoneReg =
-  /^(\+7|7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[\d]{3}[\s\-]?[\d]{2}[\s\-]?[\d]{2}$/;
+const cities = CITY_SELECT_OPTIONS.filter((city) => !city.disabled).map(
+  (city) => city.value,
+);
 
 export const userRegisterDto = z.object({
   name: z
     .string()
+    .trim()
     .min(2, { error: "Имя пользователя должно содержать минимум 2 символа" })
-    .trim(),
+    .max(30, { error: "Превышено максимальное количество символов" }),
   email: z
     .string()
     .trim()
@@ -15,13 +18,15 @@ export const userRegisterDto = z.object({
     .pipe(z.email({ error: "Неправильно указан формат email" })),
   phone: z
     .string()
-    .regex(phoneReg, { error: "Неверный формат телефона" })
-    .trim(),
+    .regex(PHONE_NUMBER_REGEX, { error: "Неверный формат телефона" }),
   speciality: z
     .string()
+    .trim()
     .min(1, { error: "Необходимо указать специальность" })
-    .trim(),
-  city: z.string().min(1, { error: "Необходимо указать город" }),
+    .max(30, { error: "Превышено максимальное количество символов" }),
+  city: z.enum(cities, {
+    error: "Выбран неверный или не валидный город",
+  }),
 });
 
 export type IUserRegisterDto = z.infer<typeof userRegisterDto>;

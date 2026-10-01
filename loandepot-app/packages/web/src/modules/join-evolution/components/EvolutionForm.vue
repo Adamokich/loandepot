@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BaseField, cities, SubmitButton } from '@/shared';
+import { BaseField, SubmitButton } from '@/shared';
 import BaseSelect from '@/shared/components/BaseSelect.vue';
 import BriefcaseIcon from '@/shared/components/icons/BriefcaseIcon.vue';
 import MailIcon from '@/shared/components/icons/MailIcon.vue';
@@ -8,9 +8,11 @@ import UserIcon from '@/shared/components/icons/UserIcon.vue';
 import { Field, Form, reset, setErrors, useForm } from '@formisch/vue';
 import { joinEvolutionSchema, type JoinEvolutionUser } from '../forms/join-evolution.schema';
 import { useEvolutionJoinStore } from '../store/join-evolution.store';
-import { ref } from 'vue';
+import { onUnmounted } from 'vue';
 
 const joinEvolutionStore = useEvolutionJoinStore();
+let timerId: ReturnType<typeof setTimeout> | null = null;
+
 const evolutionForm = useForm({
   schema: joinEvolutionSchema,
   initialInput: {
@@ -25,8 +27,11 @@ const evolutionForm = useForm({
 async function handleFormSuccess(outputData: JoinEvolutionUser): Promise<void> {
   joinEvolutionStore.success = await joinEvolutionStore.userSubmitForm(outputData);
 
+  if (timerId) clearTimeout(timerId);
+
   if (joinEvolutionStore.success) {
     reset(evolutionForm);
+    timerId = setTimeout(() => (joinEvolutionStore.success = false), 5000);
     return;
   }
 
@@ -46,6 +51,10 @@ async function handleFormSuccess(outputData: JoinEvolutionUser): Promise<void> {
     }
   }
 }
+
+onUnmounted(() => {
+  if (timerId) clearTimeout(timerId);
+});
 </script>
 
 <template>
@@ -61,7 +70,7 @@ async function handleFormSuccess(outputData: JoinEvolutionUser): Promise<void> {
       </Field>
       <Field :of="evolutionForm" :path="['city']" v-slot="field">
         <div class="field-wrapper">
-          <BaseSelect :options="cities" placeholder="City" v-model="field.input" />
+          <BaseSelect placeholder="City" v-model="field.input" />
           <span v-if="field.errors?.length" class="error-msg">{{ field.errors.join(', ') }}</span>
         </div>
       </Field>

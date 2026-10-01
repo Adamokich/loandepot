@@ -13,6 +13,7 @@ import { ModuleController } from "./modules/module/module.controller.js";
 import { UserController } from "./modules/user/user.controller.js";
 import { ReviewController } from "./modules/review/review.controller.js";
 import { AppointmentController } from "./modules/appointment/appointment.conroller.js";
+import { exceptionFilter } from "./common/middlewares/exception.filter.js";
 
 @injectable()
 export class App {
@@ -71,6 +72,7 @@ export class App {
   public async init(): Promise<void> {
     this.useMiddleware();
     this.useRoutes();
+    this._app.use(exceptionFilter);
 
     this.server = this.app.listen(this.port, () => {
       this.logger.log("Success!");

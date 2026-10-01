@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ISelectOption } from '@/modules/join-evolution/interfaces/select.interface';
 import { Select } from 'vue3-select-component';
 import 'vue3-select-component/styles';
 import ChevronDown from './icons/ChevronDown.vue';
 import GlobeIcon from './icons/GlobeIcon.vue';
+import { MUTABLE_CITY_SELECT_OPTIONS } from '@loandepot/shared';
 
-const { options, placeholder } = defineProps<{ options: ISelectOption[]; placeholder: string }>();
+const { placeholder } = defineProps<{ placeholder: string }>();
 const modelValue = defineModel<string | null | number>({ default: null });
 </script>
 
@@ -13,7 +13,12 @@ const modelValue = defineModel<string | null | number>({ default: null });
   <div class="base-select">
     <label>
       <span>From</span>
-      <Select class="select" v-model="modelValue" :options="options" :placeholder="placeholder">
+      <Select
+        class="select"
+        v-model="modelValue"
+        :options="MUTABLE_CITY_SELECT_OPTIONS"
+        :placeholder="placeholder"
+      >
         <template #trailing-icon>
           <ChevronDown />
         </template>

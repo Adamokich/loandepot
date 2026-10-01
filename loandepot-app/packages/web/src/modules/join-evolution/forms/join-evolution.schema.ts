@@ -1,12 +1,11 @@
 import * as v from 'valibot';
 
-const phoneReg = /^(\+7|7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[\d]{3}[\s\-]?[\d]{2}[\s\-]?[\d]{2}$/;
-
 export const joinEvolutionSchema = v.object({
   name: v.pipe(
     v.string(),
     v.trim(),
     v.minLength(2, 'Минимальное количество символов 2'),
+    v.maxLength(30, 'Превышено максимальное количество символов'),
     v.nonEmpty('Имя пользователя должно содержать минимум 2 символа'),
   ),
   email: v.pipe(
@@ -22,6 +21,7 @@ export const joinEvolutionSchema = v.object({
     v.trim(),
     v.nonEmpty('Необходимо указать специальность'),
     v.minLength(2, 'Минимальное количество символов 2'),
+    v.maxLength(30, 'Превышено максимальное количество символов'),
   ),
   city: v.pipe(v.string(), v.nonEmpty('Необходимо указать город')),
 });

@@ -3,7 +3,7 @@ import { BaseController } from "../../common/base.controller.js";
 import { TYPES } from "../../types.js";
 import { ILogger } from "../logger/logger.interface.js";
 import { IUserService } from "./user.service.interface.js";
-import { Request, Response, NextFunction, json } from "express";
+import { Request, Response, NextFunction } from "express";
 import { IUserRegisterDto, userRegisterDto } from "./dto/user.register.dto.js";
 import { validateMiddleware } from "../../common/middlewares/validate.middleware.js";
 
@@ -33,19 +33,9 @@ export class UserController extends BaseController {
       const dto: IUserRegisterDto = req.body;
 
       const result = await this.userService.register(dto);
-      this.created(res, result);
+      this.created(result);
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.message === "Duplicate Email") {
-          this.error(res, 400, "Пользователь с таким email уже существует");
-          return;
-        }
-
-        if (error.message === "Duplicate phone") {
-          this.error(res, 400, "Пользователь с таким номером уже существует");
-          return;
-        }
-      }
+      next(error);
     }
   }
 }
