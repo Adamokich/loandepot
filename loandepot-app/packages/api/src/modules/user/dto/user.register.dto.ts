@@ -24,7 +24,7 @@ export const userRegisterDto = z.object({
     .trim()
     .min(1, { error: "Необходимо указать специальность" })
     .max(30, { error: "Превышено максимальное количество символов" }),
-  city: z.enum(cities, {
+  city: z.string().refine((value) => cities.includes(value), {
     error: "Выбран неверный или не валидный город",
   }),
 });

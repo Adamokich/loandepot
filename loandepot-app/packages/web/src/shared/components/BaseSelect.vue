@@ -3,7 +3,7 @@ import { Select } from 'vue3-select-component';
 import 'vue3-select-component/styles';
 import ChevronDown from './icons/ChevronDown.vue';
 import GlobeIcon from './icons/GlobeIcon.vue';
-import { MUTABLE_CITY_SELECT_OPTIONS } from '@loandepot/shared';
+import { CITY_SELECT_OPTIONS } from '@loandepot/shared';
 
 const { placeholder } = defineProps<{ placeholder: string }>();
 const modelValue = defineModel<string | null | number>({ default: null });
@@ -16,7 +16,7 @@ const modelValue = defineModel<string | null | number>({ default: null });
       <Select
         class="select"
         v-model="modelValue"
-        :options="MUTABLE_CITY_SELECT_OPTIONS"
+        :options="CITY_SELECT_OPTIONS"
         :placeholder="placeholder"
       >
         <template #trailing-icon>
