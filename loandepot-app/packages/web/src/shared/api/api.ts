@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const API_ROUTES = {
   modules: 'api/modules',
+  userRegister: 'users/register',
 };
 
 export const client = axios.create({
