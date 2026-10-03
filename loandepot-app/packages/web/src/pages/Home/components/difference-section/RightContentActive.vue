@@ -101,6 +101,7 @@ const modalVideoStore = useModalVideoStore();
 
     img {
       max-width: 100%;
+      height: 320px;
     }
   }
 

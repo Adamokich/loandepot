@@ -188,4 +188,67 @@ onUnmounted(() => {
   color: var(--color-error);
   font-family: var(--font-mark);
 }
+
+@media (max-width: 1400px) {
+  .form-top {
+    grid-template-columns: 290px;
+    grid-template-rows: repeat(4, auto);
+    column-gap: 25px;
+  }
+
+  .form-top > :nth-child(2) {
+    grid-row: 1;
+  }
+
+  .form-top > :nth-child(4) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+@media (max-width: 1200px) {
+  .form-top {
+    grid-template-columns: 250px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .form-top {
+    grid-template-columns: 225px;
+  }
+}
+
+@media (max-width: 991px) {
+  .form-top {
+    grid-template-columns: 360px;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-top > :nth-child(2) {
+    grid-column: auto;
+    grid-row: 4;
+  }
+
+  .form-top > :nth-child(3) {
+    grid-column: auto;
+    grid-row: 3;
+  }
+
+  .form-top > :nth-child(4) {
+    grid-column: auto;
+    grid-row: 5;
+  }
+
+  .form-top > :nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-top {
+    grid-template-columns: 324px;
+  }
+}
 </style>

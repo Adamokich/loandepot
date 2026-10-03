@@ -155,6 +155,10 @@ function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number)
 }
 
 @media (max-width: 1200px) {
+  .right-content {
+    height: 75vh;
+  }
+
   .right-content-slider {
     position: static;
     padding-left: 20px;
@@ -173,6 +177,10 @@ function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number)
 }
 
 @media (max-width: 767px) {
+  .right-content {
+    height: 300px;
+  }
+
   .slider-scrollbar-container {
     display: none;
   }
