@@ -49,4 +49,53 @@ import EvolutionForm from './EvolutionForm.vue';
   flex-direction: column;
   gap: 26px;
 }
+
+@media (max-width: 1400px) {
+  .join-evolution-wrapper {
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .join-evolution-wrapper {
+    height: 100vh;
+    gap: 30px;
+  }
+
+  .join-evolution-left-top {
+    display: none;
+  }
+
+  .join-evolution-title {
+    font-size: 45px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .join-evolution-wrapper {
+    padding-inline: 20px;
+    grid-template-columns: 1fr;
+
+    img {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .join-evolution-title {
+    padding-top: 70px;
+  }
+
+  .join-evolution-bottom {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .join-evolution-title {
+    font-size: 37px;
+  }
+}
 </style>
