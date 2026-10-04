@@ -16,7 +16,7 @@ export const useEvolutionJoinStore = defineStore('join-evolution', () => {
 
   async function userSubmitForm(formData: Omit<IUser, '_id'>): Promise<boolean> {
     try {
-      await client.post<Omit<IUser, '_id'>>('http://localhost:8000/users/register', formData);
+      await client.post<Omit<IUser, '_id'>>(API_ROUTES.userRegister, formData);
       return true;
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {

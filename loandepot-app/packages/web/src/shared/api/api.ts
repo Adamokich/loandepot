@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const API_ROUTES = {
-  modules: 'api/modules',
+  modules: '/api/modules',
+  reviews: '/api/reviews',
   userRegister: 'users/register',
 };
 
