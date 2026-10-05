@@ -61,7 +61,7 @@ import { ScheduleButton } from '@/shared';
 
     img {
       max-width: 100%;
-      height: 549px;
+      height: 450px;
       object-fit: cover;
     }
   }
@@ -74,7 +74,7 @@ import { ScheduleButton } from '@/shared';
 @media (max-width: 767px) {
   .difference-right-inactive {
     img {
-      height: 549px;
+      height: 465px;
     }
 
     gap: 0;

@@ -260,7 +260,7 @@ onMounted(async () => {
   }
 
   .hero-modules-view-all {
-    top: 360px;
+    top: 345px;
     background-color: var(--color-dark);
     color: var(--color-light);
   }
