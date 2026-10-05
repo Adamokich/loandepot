@@ -6,8 +6,15 @@ import { inject } from 'vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 import ExploreModules from './components/explore-modules-section/ExploreModules.vue';
 import { EvolutionSection } from '@/modules/join-evolution/index.ts';
+import ShowingUpSection from './components/showing-up-section/components/ShowingUpSection.vue';
 
-const sections = ['Show Up: Evolve', 'Show Up: Evolve', 'Explore  the modules'];
+const sections = [
+  'Show Up: Evolve',
+  'Show Up: Evolve',
+  'Explore  the modules',
+  'Join the Evolution',
+  'Reviews',
+];
 const isMobile = inject(isMobileKey);
 </script>
 
@@ -21,6 +28,7 @@ const isMobile = inject(isMobileKey);
     <DifferenceSection />
     <ExploreModules />
     <EvolutionSection />
+    <ShowingUpSection />
   </component>
 </template>
 

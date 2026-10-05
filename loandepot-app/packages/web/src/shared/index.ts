@@ -10,5 +10,6 @@ export { default as MoreLink } from './components/MoreLink.vue';
 export { default as BaseField } from './components/BaseField.vue';
 export { default as SubmitButton } from './components/buttons/SubmitButton.vue';
 export { useModulesStore } from './store/modules.store.ts';
+export { useReviewsStore } from './store/reviews.store.ts';
 export { useModalVideoStore } from './store/modalVideo.store.ts';
 export { useSwiper } from './composables/swiper.ts';

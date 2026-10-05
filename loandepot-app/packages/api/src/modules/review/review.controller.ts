@@ -25,13 +25,13 @@ export class ReviewController extends BaseController {
   async getAllReviews(req: Request, res: Response): Promise<void> {
     try {
       const result = await this.reviewService.getAllReviews();
-      this.ok(res, result);
+      this.ok(result);
     } catch (error) {
       this.logger.error(
         "[ReviewController]: произошла непредвиденная ошибка",
         error,
       );
-      this.error(res, 500, "Не удалось загрузить отзывы пользователей");
+      this.error(500, "Не удалось загрузить отзывы пользователей");
     }
   }
 }
