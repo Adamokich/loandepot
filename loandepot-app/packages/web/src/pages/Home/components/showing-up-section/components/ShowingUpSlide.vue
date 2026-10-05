@@ -204,4 +204,28 @@ const modalVideoStore = useModalVideoStore();
 .fade-leave-to {
   opacity: 0;
 }
+
+@media (max-width: 767px) {
+  .slide-active-descr {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 480px) {
+  .showing-up-slide {
+    img {
+      height: 85px;
+      width: 85px;
+    }
+  }
+
+  .author-name {
+    font-size: 20px;
+  }
+}
 </style>
