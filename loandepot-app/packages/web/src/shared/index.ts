@@ -12,4 +12,5 @@ export { default as SubmitButton } from './components/buttons/SubmitButton.vue';
 export { useModulesStore } from './store/modules.store.ts';
 export { useReviewsStore } from './store/reviews.store.ts';
 export { useModalVideoStore } from './store/modalVideo.store.ts';
+export { sections } from './constants/sections.ts';
 export { useSwiper } from './composables/swiper.ts';

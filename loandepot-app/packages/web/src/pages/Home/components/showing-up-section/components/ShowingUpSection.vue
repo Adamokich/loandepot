@@ -94,4 +94,44 @@ const { onSwiperInit, onSlideChange, onSlideNext, onSlidePrev, activeIndex, swip
     margin-right: 3px;
   }
 }
+
+@media (max-width: 1200px) {
+  .showing-up {
+    overflow: hidden;
+  }
+
+  .showing-up-top {
+    :deep(a) {
+      display: none;
+    }
+  }
+
+  .showing-up-title {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 991px) {
+  .showing-up-slider-controller {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .showing-up-top {
+    padding-left: 20px;
+  }
+
+  .showing-up-title {
+    height: 120px;
+    font-size: 35px;
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .showing-up-title {
+    font-size: 30px;
+  }
+}
 </style>

@@ -83,4 +83,37 @@ onMounted(async () => {
   width: 100%;
   max-width: 555px;
 }
+
+@media (max-width: 1200px) {
+  .showing-up-slider {
+    max-width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .showing-up-slider {
+    left: auto;
+    transform: none;
+  }
+
+  .swiper-container {
+    margin-left: 20px;
+  }
+
+  .swiper-slide {
+    max-width: 435px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper-container {
+    margin-left: 0;
+  }
+
+  .swiper-slide {
+    max-width: 350px;
+  }
+}
 </style>
