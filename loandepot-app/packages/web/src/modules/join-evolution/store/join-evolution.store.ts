@@ -3,11 +3,8 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { client } from '@/shared/api';
 import { API_ROUTES } from '@/shared/api/api';
-import type {
-  ServerErrorData,
-  ServerValidationErrorDetail,
-} from '../interfaces/server.validation.interface';
 import axios from 'axios';
+import type { ServerErrorData, ServerValidationErrorDetail } from '@loandepot/shared';
 
 export const useEvolutionJoinStore = defineStore('join-evolution', () => {
   const success = ref<boolean>(false);

@@ -4,6 +4,7 @@ export const API_ROUTES = {
   modules: '/api/modules',
   reviews: '/api/reviews',
   userRegister: 'users/register',
+  appointmentRegister: 'appointments/register',
 };
 
 export const client = axios.create({

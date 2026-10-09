@@ -138,7 +138,7 @@ const backgroundImage = `linear-gradient(180.00deg, rgba(0, 0, 0, 0) 0%, rgba(0,
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .explore-slide {
     height: 250px;
   }
