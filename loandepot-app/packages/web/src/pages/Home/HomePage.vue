@@ -18,11 +18,11 @@ const isMobile = inject(isMobileKey);
     v-bind="!isMobile ? { sections: sections } : {}"
   >
     <HeaderMobile v-if="isMobile" />
-    <!-- <HeroSection />
+    <HeroSection />
     <DifferenceSection />
     <ExploreModules />
     <EvolutionSection />
-    <ShowingUpSection /> -->
+    <ShowingUpSection />
     <ContactSection />
   </component>
 </template>
