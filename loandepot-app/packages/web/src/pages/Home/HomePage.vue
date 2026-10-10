@@ -7,6 +7,7 @@ import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
 import ExploreModules from './components/explore-modules-section/ExploreModules.vue';
 import { EvolutionSection } from '@/modules/join-evolution/index.ts';
 import ShowingUpSection from './components/showing-up-section/components/ShowingUpSection.vue';
+import { ContactSection } from '@/modules/contact/index.ts';
 
 const isMobile = inject(isMobileKey);
 </script>
@@ -20,8 +21,9 @@ const isMobile = inject(isMobileKey);
     <!-- <HeroSection />
     <DifferenceSection />
     <ExploreModules />
-    <EvolutionSection /> -->
-    <ShowingUpSection />
+    <EvolutionSection />
+    <ShowingUpSection /> -->
+    <ContactSection />
   </component>
 </template>
 

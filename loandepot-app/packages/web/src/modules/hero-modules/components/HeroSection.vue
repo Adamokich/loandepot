@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BaseButton, HeaderDesktop, HeaderMobile, PlayVideoButton, VideoButton } from '@/shared';
+import { BaseButton, HeaderDesktop, PlayVideoButton, VideoButton } from '@/shared';
 import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import HeroSectionModules from './HeroSectionModules.vue';
 import { useModalVideoStore } from '@/shared/store/modalVideo.store.ts';

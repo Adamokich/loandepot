@@ -13,4 +13,8 @@ export interface ServerValidationDublicateError {
   message: string;
 }
 
-export type ServerErrorData = ServerValidationResponseError & ServerValidationDublicateError;
+export type ServerErrorData = ServerValidationResponseError &
+  (
+    | ServerValidationDublicateError
+    | Pick<ServerValidationErrorDetail, "message">
+  );
