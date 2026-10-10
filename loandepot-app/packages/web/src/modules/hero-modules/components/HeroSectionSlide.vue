@@ -64,6 +64,7 @@ const activeSlideClass = computed<CSSProperties>(() => {
   position: relative;
   border-radius: var(--border-radius-l);
   height: 227px;
+  content-visibility: auto;
 }
 
 .slide-inactive,

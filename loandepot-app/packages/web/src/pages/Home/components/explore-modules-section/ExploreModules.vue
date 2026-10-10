@@ -2,7 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import LeftContent from './LeftContent.vue';
 import RightContent from './RightContent.vue';
-import { useModulesStore, useSwiper } from '@/shared/index.ts';
+import { ErrorMessage, useModulesStore, useSwiper } from '@/shared/index.ts';
+import BasePreloader from '@/shared/components/preloaders/BasePreloader.vue';
 
 const { activeIndex, onSlideNext, onSlideChange, onSwiperInit, onSlidePrev, swiperInstance } =
   useSwiper();
@@ -16,9 +17,7 @@ function handleAutoplayProgress(progress: number): void {
   autoPlayProgress.value = progress;
 }
 
-onMounted(async () => {
-  await modulesStore.getModules();
-
+onMounted(() => {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -48,28 +47,43 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="modulesStore.modules" class="explore-modules" ref="exploreSectionRef">
+  <div class="explore-modules" ref="exploreSectionRef">
     <div class="explore-modules-wrapper container">
-      <LeftContent
-        :active-index="activeIndex"
-        :total-slides="modulesStore.modules.length"
-        :progress="autoPlayProgress"
-        @next="onSlideNext"
-        @prev="onSlidePrev"
+      <BasePreloader v-if="modulesStore.isLoading" />
+      <ErrorMessage
+        v-else-if="modulesStore.errorMessage"
+        :message="modulesStore.errorMessage"
+        @retry="modulesStore.getModules"
       />
-      <RightContent
-        :modules="modulesStore.modules"
-        :active-index="activeIndex"
-        @init="onSwiperInit"
-        @change="onSlideChange"
-        @autoplay-progress="handleAutoplayProgress"
-      />
+      <div v-else-if="modulesStore.modules" class="explore-modules-wrapper">
+        <LeftContent
+          :active-index="activeIndex"
+          :total-slides="modulesStore.modules.length"
+          :progress="autoPlayProgress"
+          @next="onSlideNext"
+          @prev="onSlidePrev"
+        />
+        <RightContent
+          :modules="modulesStore.modules"
+          :active-index="activeIndex"
+          @init="onSwiperInit"
+          @change="onSlideChange"
+          @autoplay-progress="handleAutoplayProgress"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.explore-modules {
+  min-height: 500px;
+  contain: opacity layout style;
+}
+
 .explore-modules-wrapper {
+  width: 100%;
+  max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 577px;
 }

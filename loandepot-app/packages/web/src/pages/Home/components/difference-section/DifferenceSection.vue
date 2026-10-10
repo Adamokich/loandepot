@@ -3,7 +3,7 @@ import { computed, defineAsyncComponent, inject, ref } from 'vue';
 
 import RightContentInactive from './RightContentInactive.vue';
 import RightContentActive from './RightContentActive.vue';
-import { HeaderMobile, ScheduleButton } from '@/shared/index.ts';
+import { ScheduleButton } from '@/shared/index.ts';
 import { isMobileSmallKey } from '@/shared/constants/injectionKeys.ts';
 
 const cards = [

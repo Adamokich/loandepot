@@ -4,8 +4,7 @@ import PlayIcon from '@/shared/components/icons/PlayIcon.vue';
 import ShowingUpSlider from './ShowingUpSlider.vue';
 import { useSwiper } from '../../../../../shared/composables/swiper.js';
 
-const { onSwiperInit, onSlideChange, onSlideNext, onSlidePrev, activeIndex, swiperInstance } =
-  useSwiper();
+const { onSwiperInit, onSlideChange, onSlideNext, onSlidePrev, activeIndex } = useSwiper();
 </script>
 
 <template>

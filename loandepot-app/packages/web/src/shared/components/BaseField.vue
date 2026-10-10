@@ -12,7 +12,7 @@ const props = defineProps<IBaseFieldProperties>();
 const inputId = useId();
 const modelValue = defineModel<string>({ default: '' });
 
-function onFocusMask(e: FocusEvent): void {
+function onFocusMask(): void {
   if (props.mask && !modelValue.value) {
     modelValue.value = '+7 (';
   }

@@ -2,7 +2,6 @@ import type { IReview } from '@loandepot/types';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { client } from '../api';
-import { API_ROUTES } from '../api/api';
 
 export const useReviewsStore = defineStore('reviews', () => {
   const reviews = ref<IReview[]>();

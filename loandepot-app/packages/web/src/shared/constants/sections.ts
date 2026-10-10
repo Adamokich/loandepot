@@ -19,4 +19,8 @@ export const sections = [
     sectionName: 'Reviews',
     isAccent: false,
   },
+  {
+    sectionName: 'Contact',
+    isAccent: false,
+  },
 ];

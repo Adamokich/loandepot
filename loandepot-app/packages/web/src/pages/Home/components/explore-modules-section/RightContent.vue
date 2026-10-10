@@ -38,7 +38,7 @@ const offsetSlides = computed(() => {
   }
 });
 
-function onAutoPlayTimeLeft(swiper: SwiperCore, timer: number, progress: number): void {
+function onAutoPlayTimeLeft(_swiper: SwiperCore, _timer: number, progress: number): void {
   emit('autoplay-progress', (1 - progress) * 100);
 }
 </script>
