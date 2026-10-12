@@ -24,13 +24,13 @@ export class ModuleController extends BaseController {
   async getModules(req: Request, res: Response): Promise<void> {
     try {
       const result = await this.moduleService.getAllModules();
-      this.ok(res, result);
+      this.ok(result);
     } catch (error) {
       this.logger.error(
         "[ModuleController]: произошла непредвиденная ошибка",
         error,
       );
-      this.error(res, 500, "Не удалось загрузить модули");
+      this.error(500, "Не удалось загрузить модули");
     }
   }
 }

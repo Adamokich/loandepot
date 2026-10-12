@@ -3,10 +3,11 @@
   --color-accent-bold: #7b6ca1;
   --color-dark: #000000;
   --color-light: #ffffff;
-  --color-error: #eb0606;
+  --color-error: #cf4040;
   --color-success: #9ec73d;
   --color-shadow-success: #a9ca5b;
   --color-light-opacity: #979797;
+  --color-bg-input: rgba(216, 216, 216, 0.3);
   --color-border-opacity: rgba(151, 151, 151, 0.2);
   --color-bg-accent: rgba(109, 83, 175, 0.2);
   --color-border-accent: rgba(109, 83, 175, 0.3);

@@ -14,7 +14,7 @@ const userShema = new Schema<IUser>(
       trim: true,
       unique: true,
     },
-    country: {
+    city: {
       type: String,
       required: true,
       trim: true,

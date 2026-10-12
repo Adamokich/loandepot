@@ -5,12 +5,23 @@ import LogoIcon from '@/shared/components/icons/LogoIcon.vue';
 import ArrowDownIcon from '@/shared/components/icons/ArrowDownIcon.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys';
 
-const { sections } = defineProps<{ sections: string[] }>();
+const { sections } = defineProps<{
+  sections: { sectionName: string; isAccent: boolean }[];
+}>();
+
 const currentSlide = ref<number>(0);
 const isMobile = inject(isMobileKey);
 
 const currentSectionName = computed<string>(() => {
-  return sections[currentSlide.value];
+  return sections[currentSlide.value].sectionName;
+});
+
+const currentSliderPanelColor = computed<string>(() => {
+  return sections[currentSlide.value].isAccent ? '#6D53AF' : '#FFF';
+});
+
+const currentTextColor = computed<string>(() => {
+  return sections[currentSlide.value].isAccent ? '#FFF' : '#6D53AF';
 });
 
 const totalSlides = computed<number>(() => {
@@ -47,6 +58,7 @@ function goToFirstSlide(): void {
           @click="nextSlide"
           :width="20"
           :height="24"
+          :color="sections[currentSlide].isAccent ? '#979797' : 'rgb(226,226,226)'"
         />
       </div>
     </div>
@@ -78,6 +90,7 @@ function goToFirstSlide(): void {
   justify-content: space-between;
   padding: 37px 25px 10px 25px;
   border-right: 1px solid rgb(0 0 0 / 0.2);
+  background-color: v-bind(currentSliderPanelColor);
 }
 
 .section-slider-controller {
@@ -93,10 +106,11 @@ function goToFirstSlide(): void {
   transform: rotate(180deg);
   writing-mode: vertical-rl;
   font-size: 13px;
+  color: var(--color-light-opacity);
 }
 
 .section-slide-name {
-  color: var(--color-accent);
+  color: v-bind(currentTextColor);
   font-weight: 900;
 }
 

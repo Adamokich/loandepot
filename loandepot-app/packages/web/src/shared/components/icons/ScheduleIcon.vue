@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const { iconColor } = defineProps<{
+  iconColor?: string;
+}>();
+</script>
+
 <template>
   <svg
     viewBox="0 0 22 22"
@@ -15,7 +21,7 @@
         height="4.000000"
         x="8.982422"
         y="8.982422"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -23,7 +29,7 @@
         height="3.988281"
         x="0.000000"
         y="0.000000"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -31,7 +37,7 @@
         height="4.000000"
         x="8.982422"
         y="17.964844"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -39,7 +45,7 @@
         height="3.988281"
         x="0.000000"
         y="8.982422"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -47,7 +53,7 @@
         height="4.000000"
         x="0.000000"
         y="17.964844"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -55,7 +61,7 @@
         height="3.988281"
         x="17.964844"
         y="0.000000"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -63,7 +69,7 @@
         height="3.988281"
         x="8.982422"
         y="0.000000"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -71,7 +77,7 @@
         height="4.000000"
         x="17.964844"
         y="8.982422"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
       <rect
         id="Rectangle-path"
@@ -79,7 +85,7 @@
         height="4.000000"
         x="17.964844"
         y="17.964844"
-        fill="rgb(109,83,175)"
+        :fill="iconColor"
       />
     </g>
   </svg>

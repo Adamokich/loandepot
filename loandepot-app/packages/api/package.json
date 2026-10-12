@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@loandepot/types": "^1.0.0",
+    "@loandepot/shared": "*",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

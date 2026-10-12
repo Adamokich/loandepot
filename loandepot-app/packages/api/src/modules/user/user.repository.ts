@@ -3,11 +3,13 @@ import { injectable } from "inversify";
 import { IUserRepository } from "./user.repository.interface.js";
 import { UserModel } from "../../models/user.model.js";
 import { IUserRegisterDto } from "./dto/user.register.dto.js";
+import { formatNumberPhone } from "@loandepot/shared";
 
 @injectable()
 export class UserRepository implements IUserRepository {
   public async create(dto: IUserRegisterDto): Promise<IUser> {
-    const user = new UserModel(dto);
+    const normalizerUserDto = { ...dto, phone: formatNumberPhone(dto.phone) };
+    const user = new UserModel(normalizerUserDto);
 
     return await user.save();
   }
@@ -17,6 +19,6 @@ export class UserRepository implements IUserRepository {
   }
 
   public async findByPhone(phone: string): Promise<IUser | null> {
-    return await UserModel.findOne({ phone: phone });
+    return await UserModel.findOne({ phone: formatNumberPhone(phone) });
   }
 }

@@ -34,23 +34,22 @@ export class AppointmentController extends BaseController {
       const dto: IAppointmentDto = req.body;
 
       const result = await this.appointmentService.registerAppointment(dto);
-      this.created(res, result);
+      this.created(result);
       return;
     } catch (error) {
       if (error instanceof Error) {
         if (error.message === "Duplicate email") {
           this.error(
-            res,
             400,
             "Пользователь с таким email уже забронировал встречу",
           );
         }
 
         if (error.message === "Duplicate date") {
-          this.error(res, 400, "На эту дату уже назначена встреча");
+          this.error(400, "На эту дату уже назначена встреча");
         }
 
-        this.error(res, 400, error.message);
+        this.error(400, error.message);
         return;
       }
     }
