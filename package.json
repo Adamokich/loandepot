@@ -10,7 +10,8 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "dev:web": "npm run dev -w @loandepot/web",
-    "dev:api": "npm run dev -w @loandepot/api"
+    "dev:api": "npm run dev -w @loandepot/api",
+    "start:prod": "turbo run dev preview --parallel"
   },
   "devDependencies": {
     "turbo": "^2.10.11"

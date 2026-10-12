@@ -1,5 +1,5 @@
 import { client } from '@/shared/api';
-import type { ServerErrorData, ServerValidationErrorDetail } from '@loandepot/shared';
+import type { ServerErrorData } from '@loandepot/shared';
 import type { IAppointment } from '@loandepot/types';
 import axios from 'axios';
 import { defineStore } from 'pinia';

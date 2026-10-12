@@ -240,6 +240,28 @@ async function handleAppointmentForm(outputData: IAppointment): Promise<void> {
   font-family: var(--font-mark);
 }
 
+@media (max-width: 1200px) {
+  .contact-form {
+    padding-top: 30px;
+  }
+
+  .schedule-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact-form-details {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-details {
+    padding-left: 10px;
+  }
+}
+
 @media (hover: hover) {
   .submit-btn:hover {
     background-color: var(--color-dark);

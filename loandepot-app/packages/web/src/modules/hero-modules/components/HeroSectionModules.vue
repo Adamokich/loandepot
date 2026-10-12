@@ -7,7 +7,7 @@ import HeroSectionSlide from './HeroSectionSlide.vue';
 import 'swiper/css';
 import PlusIcon from '@/shared/components/icons/PlusIcon.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
-import { useModulesStore } from '@/shared/index.ts';
+import { BasePreloader, ErrorMessage, useModulesStore } from '@/shared/index.ts';
 
 const modulesStore = useModulesStore();
 const swiperInstance = ref<SwiperCore | undefined>(undefined);
@@ -29,8 +29,8 @@ function prevSlide(): void {
   swiperInstance.value?.slidePrev();
 }
 
-onMounted(async () => {
-  await modulesStore.getModules();
+onMounted(() => {
+  modulesStore.getModules();
 });
 </script>
 
@@ -49,7 +49,14 @@ onMounted(async () => {
         </div>
       </div>
       <div class="hero-modules-slider">
+        <BasePreloader v-if="modulesStore.isLoading" />
+        <ErrorMessage
+          v-else-if="modulesStore.errorMessage"
+          :message="modulesStore.errorMessage"
+          @retry="modulesStore.getModules"
+        />
         <Swiper
+          v-else
           @swiper="onSwiperInit"
           @slide-change="onSlideChange"
           :slides-per-view="'auto'"
@@ -57,6 +64,9 @@ onMounted(async () => {
           :speed="900"
           :simulate-touch="false"
           :loop="true"
+          :observer="true"
+          :observeParents="true"
+          :resizeObserver="true"
         >
           <SwiperSlide v-for="module in modulesStore.modules" :key="module.moduleId">
             <HeroSectionSlide

@@ -131,6 +131,58 @@ const modalVideoStore = useModalVideoStore();
   margin-left: 5px;
 }
 
+@media (max-width: 1200px) {
+  .contact-info-top {
+    h2 {
+      font-size: 45px;
+    }
+  }
+
+  .play-video {
+    max-width: 300px;
+    padding-block: 30px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact-info-top {
+    padding-left: 20px;
+  }
+
+  .contact-info-bottom {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .play-video {
+    max-width: 220px;
+    padding-block: 20px;
+
+    :deep(button) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+@media (max-width: 468px) {
+  .contact-info-top {
+    padding-left: 10px;
+
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  .contact-info-bottom {
+    padding-left: 10px;
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+  }
+}
+
 @media (hover: hover) {
   .contact-info-main > a:hover {
     opacity: 0.5;
