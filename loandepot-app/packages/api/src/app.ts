@@ -30,7 +30,7 @@ export class App {
     private appointmentController: AppointmentController,
   ) {
     this._app = express();
-    this.port = Number(process.env.PORT);
+    this.port = Number(process.env.PORT) || 10000;
   }
 
   public get app(): Application {
@@ -74,7 +74,7 @@ export class App {
     this.useRoutes();
     this._app.use(exceptionFilter);
 
-    this.server = this.app.listen(this.port, () => {
+    this.server = this.app.listen(this.port, "0.0.0.0", () => {
       this.logger.log("Success!");
     });
   }
