@@ -11,7 +11,10 @@ export const useAppointmentStore = defineStore('appointment', () => {
 
   async function appointmentSubmitForm(formData: IAppointment): Promise<boolean> {
     try {
-      await client.post<IAppointment>('http://localhost:8000/appointments/register', formData);
+      await client.post<IAppointment>(
+        'https://loandepot.onrender.com/appointments/register',
+        formData,
+      );
       return true;
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
