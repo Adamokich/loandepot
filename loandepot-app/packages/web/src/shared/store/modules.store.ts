@@ -17,7 +17,7 @@ export const useModulesStore = defineStore('modules', () => {
   async function getModules(): Promise<void> {
     isLoading.value = true;
     try {
-      const res = await client.get<IModule[]>('http://localhost:8000/api/modules?');
+      const res = await client.get<IModule[]>('https://loandepot.onrender.com/api/modules?');
       modules.value = res.data;
     } catch (error: unknown) {
       if (isAxiosError(error)) {
