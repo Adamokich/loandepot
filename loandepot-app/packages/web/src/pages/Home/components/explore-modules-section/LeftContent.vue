@@ -243,13 +243,14 @@ const isMobileS = inject(isMobileSmallKey);
     align-items: end;
     justify-content: space-between;
     padding-inline: 20px;
-    padding-top: 45px;
+    padding-top: 135px;
   }
 
   .schedule-btn {
     position: absolute;
     top: 0;
     right: 0;
+    padding-top: 95px;
   }
 }
 

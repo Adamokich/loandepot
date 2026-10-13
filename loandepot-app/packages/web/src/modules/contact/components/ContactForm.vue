@@ -16,6 +16,7 @@ import { ref } from 'vue';
 
 const appointmentStore = useAppointmentStore();
 const calendarDate = ref<Date | null>(null);
+const successDateText = ref<string>('');
 let timerId: ReturnType<typeof setTimeout> | null = null;
 
 const appointmentForm = useForm({
@@ -43,11 +44,21 @@ async function handleAppointmentForm(outputData: IAppointment): Promise<void> {
   if (timerId) clearTimeout(timerId);
 
   if (appointmentStore.success) {
+    if (calendarDate.value) {
+      successDateText.value = new Intl.DateTimeFormat('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(calendarDate.value);
+    }
+
     reset(appointmentForm);
     calendarDate.value = null;
     timerId = setTimeout(() => {
       appointmentStore.success = false;
-    }, 3000);
+    }, 5000);
   } else if (appointmentStore.serverError) {
     const errorText = appointmentStore.serverError;
 
@@ -132,6 +143,9 @@ async function handleAppointmentForm(outputData: IAppointment): Promise<void> {
             </div>
           </Field>
         </div>
+        <span v-if="appointmentStore.success" class="success-msg"
+          >Встреча успешно назначена на {{ successDateText }}</span
+        >
         <SubmitButton class="submit-btn">Schedule</SubmitButton>
       </Form>
     </div>
@@ -238,6 +252,10 @@ async function handleAppointmentForm(outputData: IAppointment): Promise<void> {
   font-size: 13px;
   color: var(--color-error);
   font-family: var(--font-mark);
+}
+
+.success-msg {
+  font-weight: 800;
 }
 
 @media (max-width: 1200px) {
