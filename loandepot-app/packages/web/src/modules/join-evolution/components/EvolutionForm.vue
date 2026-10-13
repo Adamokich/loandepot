@@ -226,29 +226,38 @@ onUnmounted(() => {
 
 @media (max-width: 767px) {
   .form-top > :nth-child(2) {
-    grid-column: auto;
-    grid-row: 4;
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .form-top > :nth-child(3) {
-    grid-column: auto;
+    grid-column: 1;
     grid-row: 3;
   }
 
   .form-top > :nth-child(4) {
-    grid-column: auto;
-    grid-row: 5;
+    grid-column: 1;
+    grid-row: 4;
   }
 
   .form-top > :nth-child(5) {
-    grid-column: auto;
+    grid-column: 1;
     grid-row: auto;
+  }
+
+  .form-top {
+    grid-template-columns: 250px;
   }
 }
 
 @media (max-width: 480px) {
   .form-top {
     grid-template-columns: 324px;
+  }
+
+  .form-top > :nth-child(2) {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 </style>

@@ -89,6 +89,7 @@ onMounted(async () => {
     max-width: 700px;
     left: 50%;
     transform: translateX(-50%);
+    bottom: 130px;
   }
 }
 

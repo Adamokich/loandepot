@@ -227,7 +227,7 @@ onMounted(() => {
     max-width: 100%;
     margin-top: 47px;
     padding-left: 35px;
-    height: 40vh;
+    height: 45vh;
   }
 
   .hero-modules-wrapper {
@@ -257,7 +257,7 @@ onMounted(() => {
 
 @media (max-width: 767px) {
   .hero-modules {
-    height: 50vh;
+    height: 60vh;
   }
 
   .hero-modules-actions {

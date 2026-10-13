@@ -94,6 +94,10 @@ import EvolutionForm from './EvolutionForm.vue';
 }
 
 @media (max-width: 480px) {
+  .join-evolution-section {
+    height: 880px;
+  }
+
   .join-evolution-title {
     font-size: 37px;
   }
