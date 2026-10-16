@@ -4,6 +4,7 @@ import { formatNumber } from '@/shared/utils/formatters.ts';
 import LogoIcon from '@/shared/components/icons/LogoIcon.vue';
 import ArrowDownIcon from '@/shared/components/icons/ArrowDownIcon.vue';
 import { isMobileKey } from '@/shared/constants/injectionKeys';
+import LogoIconAccent from './icons/LogoIconAccent.vue';
 
 const { sections } = defineProps<{
   sections: { sectionName: string; isAccent: boolean }[];
@@ -22,6 +23,10 @@ const currentSliderPanelColor = computed<string>(() => {
 
 const currentTextColor = computed<string>(() => {
   return sections[currentSlide.value].isAccent ? '#FFF' : '#6D53AF';
+});
+
+const currentLogoColor = computed(() => {
+  return sections[currentSlide.value].isAccent;
 });
 
 const totalSlides = computed<number>(() => {
@@ -44,7 +49,8 @@ function goToFirstSlide(): void {
 <template>
   <div class="section-slider">
     <div class="section-slider-panel">
-      <LogoIcon class="logo" @click="goToFirstSlide" />
+      <LogoIcon v-if="!currentLogoColor" class="logo" @click="goToFirstSlide" />
+      <LogoIconAccent v-else class="logo" @click="goToFirstSlide" />
       <div class="section-slider-controller">
         <div class="section-slide-name">
           {{ currentSectionName }}
