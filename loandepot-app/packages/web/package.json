@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@formisch/vue": "^1.1.0",
-    "@loandepot/types": "^1.0.0",
     "@loandepot/shared": "*",
+    "@loandepot/types": "^1.0.0",
     "@vuepic/vue-datepicker": "^14.0.0",
     "axios": "^1.19.0",
+    "cors": "^2.8.6",
     "maska": "^3.2.1",
     "pinia": "^4.0.3",
     "swiper": "^14.2.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/cors": "^2.8.19",
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/tsconfig": "^0.9.1",
