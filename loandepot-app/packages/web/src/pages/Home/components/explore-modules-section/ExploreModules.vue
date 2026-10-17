@@ -1,12 +1,25 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LeftContent from './LeftContent.vue';
 import RightContent from './RightContent.vue';
 import { ErrorMessage, useModulesStore, useSwiper } from '@/shared/index.ts';
 import BasePreloader from '@/shared/components/preloaders/BasePreloader.vue';
+import { isMobileKey } from '@/shared/constants/injectionKeys.ts';
+
+const {isActive} = defineProps<{isActive: boolean}>();
+
+const isMobile = inject(isMobileKey);
+const isVisible = ref<boolean>(false);
+
+  const shouldAutoPlay = computed<boolean>(() => {
+    return isMobile?.value
+    ? isVisible.value
+    : isActive
+  })
 
 const { activeIndex, onSlideNext, onSlideChange, onSwiperInit, onSlidePrev, swiperInstance } =
   useSwiper();
+
 const modulesStore = useModulesStore();
 const autoPlayProgress = ref<number>(0);
 
@@ -19,17 +32,8 @@ function handleAutoplayProgress(progress: number): void {
 
 onMounted(() => {
   observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!swiperInstance.value) return;
-
-        if (entry.isIntersecting) {
-          swiperInstance.value.autoplay.start();
-        } else {
-          swiperInstance.value.autoplay.stop();
-          swiperInstance.value.slideTo(0, 0);
-        }
-      });
+    ([entry]) => {
+      isVisible.value = entry.isIntersecting;
     },
     { threshold: 0.5 },
   );
@@ -44,6 +48,17 @@ onBeforeUnmount(() => {
     observer.unobserve(exploreSectionRef.value);
   }
 });
+
+watch([shouldAutoPlay, swiperInstance] as const, ([shouldPlay, swiper]) => {
+  if (!swiper?.autoplay) return;
+
+  if (shouldPlay) {
+    swiper.autoplay.start();
+  } else {
+    swiper.autoplay.stop();
+    swiper.slideTo(0, 0);
+  }
+}, {immediate: true})
 </script>
 
 <template>
@@ -85,7 +100,7 @@ onBeforeUnmount(() => {
   width: 100%;
   max-width: 100%;
   display: grid;
-  grid-template-columns: 1fr 577px;
+  grid-template-columns: 716px 577px;
 }
 
 @media (max-width: 1200px) {

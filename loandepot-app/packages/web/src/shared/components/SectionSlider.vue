@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue';
+import { computed, inject, provide, ref } from 'vue';
 import { formatNumber } from '@/shared/utils/formatters.ts';
 import LogoIcon from '@/shared/components/icons/LogoIcon.vue';
 import ArrowDownIcon from '@/shared/components/icons/ArrowDownIcon.vue';
-import { isMobileKey } from '@/shared/constants/injectionKeys';
+import { currentSectionKey, isMobileKey } from '@/shared/constants/injectionKeys';
 import LogoIconAccent from './icons/LogoIconAccent.vue';
+
 
 const { sections } = defineProps<{
   sections: { sectionName: string; isAccent: boolean }[];
 }>();
 
-const currentSlide = ref<number>(0);
+const currentSlide = defineModel<number>({default: 0});
 const isMobile = inject(isMobileKey);
+
+provide(currentSectionKey, currentSlide);
 
 const currentSectionName = computed<string>(() => {
   return sections[currentSlide.value].sectionName;

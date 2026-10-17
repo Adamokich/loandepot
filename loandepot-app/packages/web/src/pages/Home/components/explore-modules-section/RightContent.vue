@@ -68,6 +68,7 @@ function onAutoPlayTimeLeft(_swiper: SwiperCore, _timer: number, progress: numbe
           disableOnInteraction: false,
           waitForTransition: true,
           stopOnLastSlide: true,
+          enabled: false
         }"
       >
         <SwiperSlide v-for="module in modules" :key="module.moduleId">
