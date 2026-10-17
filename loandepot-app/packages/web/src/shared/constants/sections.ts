@@ -1,4 +1,4 @@
-export const sections = [
+export const SECTIONS = [
   {
     sectionName: 'Show Up: Evolve',
     isAccent: false,
