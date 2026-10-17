@@ -1,10 +1,4 @@
-import express, {
-  Application,
-  NextFunction,
-  Router,
-  Request,
-  Response,
-} from "express";
+import express, { Application, Router } from "express";
 import { Server } from "http";
 import { ILogger } from "./modules/logger/logger.interface.js";
 import { inject, injectable } from "inversify";
@@ -14,6 +8,7 @@ import { UserController } from "./modules/user/user.controller.js";
 import { ReviewController } from "./modules/review/review.controller.js";
 import { AppointmentController } from "./modules/appointment/appointment.conroller.js";
 import { exceptionFilter } from "./common/middlewares/exception.filter.js";
+import cors from "cors";
 
 @injectable()
 export class App {
@@ -40,15 +35,11 @@ export class App {
   private useMiddleware(): void {
     this._app.use(express.json());
 
-    this._app.use((req: Request, res: Response, next: NextFunction) => {
-      res.setHeader("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
-      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-      res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization",
-      );
-      next();
-    });
+    this._app.use(
+      cors({
+        origin: [process.env.CLIENT_URL!, process.env.BASIC_URL!],
+      }),
+    );
   }
 
   private useRoutes(): void {
